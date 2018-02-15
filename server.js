@@ -8,28 +8,24 @@ const app = express();
 const router = express.Router();
 
 //setup port
-const port = process.env.API_PORT || 8080;
+const PORT = process.env.PORT || 3001;
+
+// Configure body parser for AJAX requests
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+// Serve up static assets
+app.use(express.static("client/build"));
+// Add routes, both API and view
+app.use(router);
+
+// Set up promises with mongoose
+mongoose.Promise = global.Promise;
 
 //db config
-mongoose.connect('mongodb://admin:1111@ds225028.mlab.com:25028/adoor');
-
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-
-//Allow CORS
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-   //and remove cacheing
-    res.setHeader('Cache-Control', 'no-cache');
-    next();
-   });
-   //now we can set the route path & initialize the API
-   router.get('/', function(req, res) {
-    res.json({ message: 'API Initialized!'});
-   });
+mongoose.connect('mongodb://admin:1111@ds225028.mlab.com:25028/adoor',
+{
+    useMongoClient: true
+  });
 
 //init API
 router.get('/', (req, res) => {
@@ -40,7 +36,7 @@ router.get('/', (req, res) => {
 app.use('/api', router);
 
 //start server
-app.listen(port, () =>{
-    console.log(`api running on ${port}!`);
+app.listen(PORT, () =>{
+    console.log(`api running on ${PORT}!`);
 })
 

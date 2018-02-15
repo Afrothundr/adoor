@@ -8,7 +8,7 @@ const app = express();
 const router = express.Router();
 
 //setup port
-const port = process.env.API_PORT || 3000;
+const port = process.env.API_PORT || 8080;
 
 //db config
 mongoose.connect('mongodb://admin:1111@ds225028.mlab.com:25028/adoor');

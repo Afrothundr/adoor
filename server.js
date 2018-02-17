@@ -2,16 +2,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const routes = require("./routes");
+const User = require('./models/User');
+const Preference  = require('./models/Preference');
 
 //instances
 const app = express();
 const router = express.Router();
 
+
 //setup port
 const PORT = process.env.PORT || 3001;
 
 // Configure body parser for AJAX requests
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Serve up static assets
 app.use(express.static("client/build"));
@@ -33,10 +37,10 @@ router.get('/', (req, res) => {
 });
 
 //use router when we call /api
-app.use('/api', router);
+app.use(routes);
 
 //start server
-app.listen(PORT, () =>{
+app.listen(PORT, () => {
     console.log(`api running on ${PORT}!`);
 })
 

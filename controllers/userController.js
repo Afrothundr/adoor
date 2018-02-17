@@ -6,7 +6,7 @@ module.exports = {
     db.User
       .find(req.query)
       .populate('preferences')
-      // .populate('matches')
+      .populate('matches')
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -14,7 +14,7 @@ module.exports = {
     db.User
       .findById(req.params.id)
       .populate('preferences')
-      // .populate('matches')
+      .populate('matches')
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

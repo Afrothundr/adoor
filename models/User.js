@@ -9,11 +9,11 @@ const userSchema = new Schema({
   preferences: {
     type: Schema.Types.ObjectId,
     ref: "Preference"
+  },
+  matches: {
+    type: Schema.Types.ObjectId,
+    ref: "Match"
   }
-  // matches: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Match"
-  // }
 });
 
 const User = mongoose.model("User", userSchema);

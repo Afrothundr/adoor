@@ -15,12 +15,17 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    let match = {
+      matches: req.body.match
+    }
     db.Match
-      .create(req.body)
+      .create(match)
       .then(dbModel => {
-        db.User.findOneAndUpdate({ _id: req.body.userId }, { matches: dbModel._id }, { new: true });
-        res.json({"message": "match Added"})
+        return db.User.findOneAndUpdate({ _id: req.body.userId }, { matches: dbModel._id }, { new: true });
         })
+      .then(dbUser => {
+        res.json(dbUser);
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

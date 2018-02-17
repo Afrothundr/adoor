@@ -3,42 +3,44 @@ const db = require("../models");
 // Defining methods
 module.exports = {
   findAll: function(req, res) {
-    db.User
+    db.Community
       .find(req.query)
-      .populate('preferences')
-      .populate('matches', 'history')
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.User
+    db.Community
       .findById(req.params.id)
-      .populate('preferences')
-      .populate('matches')
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    let newUser = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password
+    let newListingCommunity = {
+        hospitalsCount: req.body.hospitalsCount,
+        crimesCount: req.body.hospitalsCount,
+        parksCount: req.body.hospitalsCount,
+        groceryStoresCount: req.body.hospitalsCount,
+        bestSchoolRating: req.body.hospitalsCount
     }
     console.log(req.body);
-    db.User
-      .create(newUser)
-      .then(dbModel => res.json({"message": "record Added"}))
+    db.Community
+      .create(newListingCommunity)
+      .then(dbModel => {
+        return db.Listing.findOneAndUpdate({ _id: req.body.listingId }, { community: dbModel._id }, { new: true });  
+        })
+      .then(dbListing => {
+        res.json(dbListing);
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.User
+    db.Community
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.User
+    db.Community
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))

@@ -3,42 +3,50 @@ const db = require("../models");
 // Defining methods
 module.exports = {
   findAll: function(req, res) {
-    db.User
+    db.Listing
       .find(req.query)
-      .populate('preferences')
-      .populate('matches', 'history')
+      .populate('community')
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.User
+    db.Listing
       .findById(req.params.id)
-      .populate('preferences')
-      .populate('matches')
+      .populate('community')
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    let newUser = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password
+    let newListing = {
+        address: req.body.address,
+        city: req.body.city,
+        zipcode: req.body.zipcode,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        bedrooms: req.body.bedrooms,
+        bathrooms: req.body.bathrooms,
+        price: req.body.price,
+        picturePath: req.body.picturePath
     }
     console.log(req.body);
-    db.User
-      .create(newUser)
-      .then(dbModel => res.json({"message": "record Added"}))
+    db.Listing
+      .create(newListing)
+      .then(dbModel => {
+        return db.Seller.findOneAndUpdate({ _id: req.body.sellerId }, { $push:{ listings: dbModel }}, { new: true });  
+        })
+      .then(dbSeller => {
+        res.json(dbSeller);
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.User
+    db.Listing
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.User
+    db.Listing
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))

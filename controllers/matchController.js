@@ -21,7 +21,7 @@ module.exports = {
     db.Match
       .create(match)
       .then(dbModel => {
-        return db.User.findOneAndUpdate({ _id: req.body.userId }, { matches: dbModel._id }, { new: true });
+        return db.User.findOneAndUpdate({ _id: req.body.userId }, { history: dbModel._id }, { new: true });
         })
       .then(dbUser => {
         res.json(dbUser);
@@ -30,7 +30,7 @@ module.exports = {
   },
   update: function(req, res) {
     db.Match
-      .findOneAndUpdate({ _id: req.body.id }, {$push: {matches: req.body.match}})
+      .findOneAndUpdate({ _id: req.body.id }, {$push: {history: req.body.match}})
       .then(dbModel => res.json({"message": "matches updated"}))
       .catch(err => res.status(422).json(err));
   },

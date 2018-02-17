@@ -3,42 +3,46 @@ const db = require("../models");
 // Defining methods
 module.exports = {
   findAll: function(req, res) {
-    db.User
+    db.Seller
       .find(req.query)
-      .populate('preferences')
-      .populate('matches', 'history')
+      .populate({
+          path: 'listings',
+          populate: {
+              path: 'community'
+          }
+        })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-    db.User
-      .findById(req.params.id)
-      .populate('preferences')
-      .populate('matches')
+    db.Seller
+    .findById(req.params.id)
+      .populate('listings')
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    let newUser = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password
+    let newSeller = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        phoneNumber: req.body.phoneNumber
     }
     console.log(req.body);
-    db.User
-      .create(newUser)
-      .then(dbModel => res.json({"message": "record Added"}))
+    db.Seller
+      .create(newSeller)
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
-    db.User
+    db.Seller
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
-    db.User
+    db.Seller
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))

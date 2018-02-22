@@ -4,6 +4,7 @@ import ZipCodes from '../../utils/zipcodes'
 import RaisedButton from 'material-ui/RaisedButton';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { DropDownMenu, MenuItem } from 'material-ui/DropDownMenu';
+import Slider from 'material-ui/Slider';
 
 
 class UserPrefQuiz extends Component {
@@ -12,14 +13,46 @@ class UserPrefQuiz extends Component {
         //intial state
         this.state = {
             //replace userId with stored cookie value
-            userId: '5a8df22e0beba811104ca437',
-            zipcode: 64111
+            userId: '5a8f3ab48896fd45f054117d',
+            zipcode: 64111,
+            bedrooms: 2,
+            bathrooms: 2
         }
     }
-    //on submit
+    //functions
     handleSubmit = event => {
         event.preventDefault();
-        //logic for determining user preferences
+        //create user prefs
+        let userPref = this.calculatePrefs();
+        //store preferences in database and update user object
+        API.createPref(userPref)
+        .then((preferences) => {
+            console.log(preferences.data);
+        }).catch(err => console.log(err));
+    }
+    handleChange = event => {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+    }
+    handleZipCodeChange = (event, index, value) => {
+        this.setState({zipcode: value});
+    }
+
+    handleBedroomSliderChange = (event, value) => {
+        this.setState({
+            bedrooms: value
+        });
+    }
+
+    handleBathroomSliderChange = (event, value) => {
+        this.setState({
+            bathrooms: value
+        });
+    }
+
+    calculatePrefs = () => {
         let schools = false;
         let grocery = false;
         let hospitals = false;
@@ -37,7 +70,7 @@ class UserPrefQuiz extends Component {
             parks = true;
           }
         
-        var newQuizInfo = {
+        return {
             userId: this.state.userId,
             caresAboutSchools: schools,
             caresAboutGroceryStores: grocery,
@@ -49,24 +82,9 @@ class UserPrefQuiz extends Component {
             bedrooms: this.state.bedrooms,
             bathrooms: this.state.bathrooms
         };
-
-        console.log(newQuizInfo);
-        //store preferences in database and update user object
-        API.createPref(newQuizInfo)
-        .then((preferences) => {
-            console.log(preferences.data);
-        }).catch(err => console.log(err));
-    }
-    handleChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value
-        });
-    }
-    handleZipCodeChange = (event, index, value) => {
-        this.setState({zipcode: value});
     }
 
+//JSX Render
     render() {
         //input form
         return (
@@ -101,26 +119,13 @@ class UserPrefQuiz extends Component {
                 </RadioButtonGroup>
 
                 <h3>How Many Bedrooms?</h3>
-                <RadioButtonGroup name="bedrooms" onChange={this.handleChange}>
-                    <RadioButton value={1} label="1" />
-                    <RadioButton value={2} label="2" />
-                    <RadioButton value={3} label="3" />
-                    <RadioButton value={4} label="4" />
-                    <RadioButton value={5} label="5" />
-                    <RadioButton value={6} label="6" />
-                    <RadioButton value={7} label="7" />
-                </RadioButtonGroup>
+                <p>{this.state.bedrooms}</p>
+                <Slider name="bedroomSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBedroomSliderChange} />
 
                 <h3>How Many Bathrooms?</h3>
-                <RadioButtonGroup name="bathrooms" onChange={this.handleChange}>
-                    <RadioButton value={1} label="1" />
-                    <RadioButton value={2} label="2" />
-                    <RadioButton value={3} label="3" />
-                    <RadioButton value={4} label="4" />
-                    <RadioButton value={5} label="5" />
-                    <RadioButton value={6} label="6" />
-                    <RadioButton value={7} label="7" />
-                </RadioButtonGroup>
+                <p>{this.state.bathrooms}</p>
+                <Slider name="bathroomSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBathroomSliderChange} />
+                
 
                 <h3>What's Your Budget?</h3>
                 <RadioButtonGroup name="budget" onChange={this.handleChange}>

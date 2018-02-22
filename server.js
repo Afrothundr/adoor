@@ -7,7 +7,7 @@ const User = require('./models/User');
 const Preference  = require('./models/Preference');
 const passport = require('passport');
 const session = require('express-session');
-const auth = require('./routes/auth');
+const auth = require('./routes');
 
 //instances
 const app = express();
@@ -32,7 +32,7 @@ app.use(session({secret: 'anything'}));
 require('./config/passport')(app);
 
 //Set up authentication routes
-app.use('/auth', auth);
+// app.use('/auth', auth);
 
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;

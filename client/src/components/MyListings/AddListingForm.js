@@ -19,7 +19,7 @@ class AddListingForm extends React.Component{
         }
     }
 
-    handleZipCodeChange = (event, index, value) => {
+    handleZipChange = (event, index, value) => {
         this.setState({zipcode: value});
     }
 
@@ -64,7 +64,7 @@ class AddListingForm extends React.Component{
                 <TextField floatingLabelText="City"/>
                 </div>
                 <h3>What's the Zipcode?</h3>
-                <DropDownMenu value={this.state.zipcode} maxHeight={200} onChange={this.handleZipCodeChange} name="zipcode" labelStyle="Zipcode">
+                <DropDownMenu value={this.state.zipcode} maxHeight={200} onChange={this.handleZipChange} name="zip" labelStyle="Zipcode">
                     {
                         ZipCodes.map(zipcode => {
                             return <MenuItem key={zipcode} value={zipcode} primaryText={zipcode} />
@@ -74,11 +74,11 @@ class AddListingForm extends React.Component{
 
                 <h3>How Many Bedrooms?</h3>
                 <p>{this.state.bedrooms}</p>
-                <Slider name="bedroomSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBedroomSliderChange} />
+                <Slider name="bedSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBedroomSliderChange} />
 
                 <h3>How Many Bathrooms?</h3>
                 <p>{this.state.bathrooms}</p>
-                <Slider name="bathroomSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBathroomSliderChange} />
+                <Slider name="bathSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBathroomSliderChange} />
                 
                 <h3>What's The Price?</h3>
                 <RadioButtonGroup name="budget" onChange={this.handleChange}>

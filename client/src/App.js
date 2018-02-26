@@ -6,6 +6,7 @@ import MatchingSideBar from './components/matchingSideBar/matchingSideBar';
 import BuySignUp from './components/BuyAcctLogin/BuyerAcctLogin';
 import SellerAcctLogin from './components/SellerAcctLogin/SellerAcctLogin';
 
+
 const App = props => {
   return (
     <MuiThemeProvider>

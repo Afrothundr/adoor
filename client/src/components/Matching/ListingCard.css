@@ -1,0 +1,31 @@
+.slick-next:before, .slick-prev:before {
+    color: white;
+    opacity: .8;
+}
+
+img-slider-container {
+    background-color: hotpink
+}
+
+.slick-prev {
+    left: 20px;
+    z-index: 1;
+}
+
+.slick-next {
+    right: 20px;
+    z-index: 1;
+}
+
+.matching-buttons {
+    margin: 20px 15px 0px 15px;
+}
+
+.matching-button-container {
+    text-align: center;
+}
+
+.card {
+    width: 50%;
+    margin: 0 auto;
+}

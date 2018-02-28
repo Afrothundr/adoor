@@ -62,6 +62,7 @@ typings/
 # dependencies
 /node_modules
 /client/node_modules
+/client/package-lock.json
 
 # testing
 /coverage

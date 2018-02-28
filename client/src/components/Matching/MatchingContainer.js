@@ -15,7 +15,7 @@ class MatchingContainer extends Component {
             userId: '5a8f3ab48896fd45f054117d'
         }
     }
-    
+    //handle decision
     handleDecision = decision => {
         if (decision === 'Yes') {
             console.log('I like this');

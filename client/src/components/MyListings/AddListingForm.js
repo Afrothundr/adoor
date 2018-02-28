@@ -1,11 +1,18 @@
-import React, { Component } from "react";
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+import { render } from 'react-dom';
 import TextField from 'material-ui/TextField';
 import { DropDownMenu, MenuItem } from 'material-ui/DropDownMenu';
 import Slider from 'material-ui/Slider';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import cloudinary from 'cloudinary';
+import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+import axios from 'axios';
 import ZipCodes from '../../utils/zipcodes';
+
+const CLOUDINARY_UPLOAD_PRESET = 'uz4557ai';
+const CLOUDINARY_UPLOAD_URL = '	https://api.cloudinary.com/v1_1/dgha5r7ax/upload';
 
 class AddListingForm extends React.Component{
     constructor(props) {
@@ -15,11 +22,13 @@ class AddListingForm extends React.Component{
             userId: '5a8f3ab48896fd45f054117d',
             zipcode: 64111,
             bedrooms: 2,
-            bathrooms: 2
+            bathrooms: 2,
+            uploadedFileCloudinaryUrl: ''
         }
+        
     }
 
-    handleZipCodeChange = (event, index, value) => {
+    handleZipChange = (event, index, value) => {
         this.setState({zipcode: value});
     }
 
@@ -43,15 +52,32 @@ class AddListingForm extends React.Component{
     }   
 
 
-    uploadWidget() {
-        console.log("In image widget");
-        let _this = this;
-        cloudinary.openUploadWidget({ cloud_name: 'dgha5r7ax', upload_preset: 'uz4557ai'},
-           function(error, result) {
-           // Update gallery state with newly uploaded image
-                this.setState({gallery: _this.state.gallery.concat(result)})
-            });
+    onImageDrop(files) {
+        this.setState({
+          uploadedFile: files[0]
+        });
+    
+        this.handleImageUpload(files[0]);
     }
+
+    handleImageUpload(file) {
+        let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                            .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                            .field('file', file);
+    
+        upload.end((err, response) => {
+          if (err) {
+            console.error(err);
+          }
+    
+          if (response.body.secure_url !== '') {
+            this.setState({
+              uploadedFileCloudinaryUrl: response.body.secure_url
+            });
+          }
+        });
+    }
+    
 
     render(){
         return(
@@ -64,7 +90,7 @@ class AddListingForm extends React.Component{
                 <TextField floatingLabelText="City"/>
                 </div>
                 <h3>What's the Zipcode?</h3>
-                <DropDownMenu value={this.state.zipcode} maxHeight={200} onChange={this.handleZipCodeChange} name="zipcode" labelStyle="Zipcode">
+                <DropDownMenu value={this.state.zipcode} maxHeight={200} onChange={this.handleZipChange} name="zip" labelStyle="Zipcode">
                     {
                         ZipCodes.map(zipcode => {
                             return <MenuItem key={zipcode} value={zipcode} primaryText={zipcode} />
@@ -74,11 +100,11 @@ class AddListingForm extends React.Component{
 
                 <h3>How Many Bedrooms?</h3>
                 <p>{this.state.bedrooms}</p>
-                <Slider name="bedroomSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBedroomSliderChange} />
+                <Slider name="bedSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBedroomSliderChange} />
 
                 <h3>How Many Bathrooms?</h3>
                 <p>{this.state.bathrooms}</p>
-                <Slider name="bathroomSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBathroomSliderChange} />
+                <Slider name="bathSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBathroomSliderChange} />
                 
                 <h3>What's The Price?</h3>
                 <RadioButtonGroup name="budget" onChange={this.handleChange}>
@@ -94,13 +120,23 @@ class AddListingForm extends React.Component{
                     <RadioButton value={475000} label="450,000 - 499,999" />
                     <RadioButton value={525000} label="500,000+ " />
                 </RadioButtonGroup>
-                
-                <div className="upload">
-                    <button onClick={this.uploadWidget.bind(this)} className="upload-button">
-                        Add Image
-                    </button>
+
+                <Dropzone
+                    multiple={true}
+                    accept="image/*"
+                    autoProcessQueue = {false}
+                    onDrop={this.onImageDrop.bind(this)}>
+                    <p>Drop an image or click to select a file to upload.</p>
+                </Dropzone>
+
+                <div>
+                    {this.state.uploadedFileCloudinaryUrl === '' ? null :
+                    <div>
+                    <p>{this.state.uploadedFile.name}</p>
+                    <img src={this.state.uploadedFileCloudinaryUrl} />
+                    </div>}
                 </div>
-                
+                                
             </form>
         );
     }

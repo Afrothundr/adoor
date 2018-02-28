@@ -1,12 +1,14 @@
 import React from "react";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import UserPrefQuiz from './components/UserPrefQuiz/UserPrefQuiz';
+// import UserPrefQuiz from './components/UserPrefQuiz/UserPrefQuiz';
+// import MatchingContainer from './components/Matching/MatchingContainer';
+// import ListingCard from './components/Matching/ListingCard';
+import MatchingContainer from "./components/Matching/MatchingContainer";
 
 const App = props => {
   return (
-    <MuiThemeProvider>
-      <UserPrefQuiz />
-    </MuiThemeProvider>
+    <div>
+      <MatchingContainer />
+    </div>
   );
 }
 

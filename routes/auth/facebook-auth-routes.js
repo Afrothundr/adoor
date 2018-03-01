@@ -1,16 +1,14 @@
-
-const express = require('express');
 const passport = require('passport');
-const router = express.Router();
+const router = require("express").Router();
 
-router.route('/facebook/callback')
+router.route('/callback')
 	.get(passport.authenticate('facebook',{
 		successRedirect: '/matching',
 		failure: '/error/'
 }));
 
 
-router.route('/facebook')
+router.route('/')
 	.get(passport.authenticate('facebook',{
 		scope:['email']
 }));

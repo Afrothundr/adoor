@@ -5,7 +5,7 @@ import StandardSideBar from './components/standardSideBar/standardSideBar';
 import MatchingSideBar from './components/matchingSideBar/matchingSideBar';
 import BuySignUp from './components/BuyAcctLogin/BuyerAcctLogin';
 import SellerAcctLogin from './components/SellerAcctLogin/SellerAcctLogin';
-
+import MyMatches from './components/myMatches/myMatches';
 
 const App = props => {
   return (
@@ -15,6 +15,7 @@ const App = props => {
       <MatchingSideBar />
       <BuySignUp />
       <SellerAcctLogin />
+      <MyMatches />
     </MuiThemeProvider>
     
   );

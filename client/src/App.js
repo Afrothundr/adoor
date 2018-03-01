@@ -5,12 +5,18 @@ import UserPrefQuiz from './components/UserPrefQuiz/UserPrefQuiz';
 import MatchingSideBar from './components/matchingSideBar/matchingSideBar';
 import BuySignUp from './components/BuyAcctLogin/BuyerAcctLogin';
 import SellerAcctLogin from './components/SellerAcctLogin/SellerAcctLogin';
+import MyMatches from './components/myMatches/myMatches';
 import BuyerAcctLogin from './components/BuyAcctLogin/BuyerAcctLogin';
-
 
 const App = props => {
   return (
     <MuiThemeProvider>
+      <UserPrefQuiz />
+      <StandardSideBar />
+      <MatchingSideBar />
+      <BuySignUp />
+      <SellerAcctLogin />
+      <MyMatches />
       <BuyerAcctLogin />
     </MuiThemeProvider>
     

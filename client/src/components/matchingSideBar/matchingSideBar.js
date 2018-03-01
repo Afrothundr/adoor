@@ -6,6 +6,8 @@ const logo = "http://via.placeholder.com/250x150";
 // placeholder image. Need to echange with a stock image of a home
 const tagLineHeader = "Adoor Matching"
 const tagLineTextShort = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim porta fermentum. Aenean maximus justo vestibulum.";
+
+// needs to calculate the number of matches the user has
 let matchCounter = 0;
 
 class MatchingSideBar extends Component {

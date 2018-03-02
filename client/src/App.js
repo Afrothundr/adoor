@@ -11,13 +11,13 @@ import BuyerAcctLogin from './components/BuyAcctLogin/BuyerAcctLogin';
 const App = props => {
   return (
     <MuiThemeProvider>
-      <UserPrefQuiz />
+      {/* <UserPrefQuiz />
       <StandardSideBar />
       <MatchingSideBar />
       <BuySignUp />
-      <SellerAcctLogin />
+      <SellerAcctLogin /> */}
       <MyMatches />
-      <BuyerAcctLogin />
+      {/* <BuyerAcctLogin /> */}
     </MuiThemeProvider>
     
   );

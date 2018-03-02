@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
+import "./myMatches.css";
 import API from '../../utils/API';
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn,
+  } from 'material-ui/Table';
 
 class MyMatches extends Component {
     constructor() {
@@ -18,7 +27,7 @@ class MyMatches extends Component {
         API.getUser(this.state.userId)
             .then((user) => {
                 this.getListings(user.data.matches.history)
-               // console.log(user.data.matches.history);
+                // console.log(user.data.matches.history);
             }).catch(err => console.log(err));
     }
 
@@ -30,7 +39,7 @@ class MyMatches extends Component {
                     this.setState((state) => {
                         console.log(listing.data);
                         state.listings.push(listing.data);
-                        return { userId: state.userId, listings: state.listings};
+                        return { userId: state.userId, listings: state.listings };
                     });
                 }).catch(err => console.log(err))
         })
@@ -44,19 +53,32 @@ class MyMatches extends Component {
     render() {
         return (
             <div className="test">
-                {this.state.listings.map(listing => {
+                        <Table >
+                        <TableHeader displayRowCheckbox={false}>
+                          <TableRow >
+                            <TableHeaderColumn className="list-headers">Address</TableHeaderColumn>
+                            <TableHeaderColumn className="list-headers">City</TableHeaderColumn>
+                            <TableHeaderColumn className="list-headers">Zip Code</TableHeaderColumn>
+                            <TableHeaderColumn className="list-headers">Listing Price</TableHeaderColumn>
+                            <TableHeaderColumn className="list-headers">Bedrooms</TableHeaderColumn>
+                            <TableHeaderColumn className="list-headers">Bathrooms</TableHeaderColumn>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody displayRowCheckbox={false}>
+                        {this.state.listings.map(listing => {
                     return (
-                        <div className="listing-card">
-                            <h2 className="address-card" key={listing._id}>{listing.address}</h2>
-                            <hr/>
-                            <h3 className="sub-address-card" key={listing._id}>{listing.city}, {listing.zipcode}</h3>
-                            <h3 className="listing-attributes" key={listing._id}>Bedrooms: {listing.bedrooms}</h3>
-                            <h3 className="listing-attributes" key={listing._id}>Bathrooms: {listing.bathrooms}</h3>
-                            <h3 className="listing-attributes" key={listing._id}>Listing Price: ${listing.price}</h3>
-                            {/* <h3 key={listing._id}>{listing.picturePath}</h3> */}
-                        </div>
-                    );
-                })}
+                          <TableRow>
+                            <TableRowColumn className="list-items">{listing.address}</TableRowColumn>
+                            <TableRowColumn className="list-items">{listing.city}</TableRowColumn>
+                            <TableRowColumn className="list-items">{listing.zipcode}</TableRowColumn>
+                            <TableRowColumn className="list-items">{`$${listing.price}`}</TableRowColumn>
+                            <TableRowColumn className="list-items">{listing.bedrooms}</TableRowColumn>
+                            <TableRowColumn className="list-items">{listing.bathrooms}</TableRowColumn>
+                          </TableRow>
+                        )})
+                }
+                        </TableBody>
+                      </Table>
             </div>
         )
     }

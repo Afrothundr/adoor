@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
+
 
 // placeholder image. need to exchange with logo image
 const logo = "http://via.placeholder.com/250x150";

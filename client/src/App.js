@@ -11,12 +11,13 @@ import MyListings  from './components/MyListings/MyListingsTable';
 const App = props => {
   return (
     <MuiThemeProvider>
-      <UserPrefQuiz />
+      {/* <UserPrefQuiz />
       <StandardSideBar />
       <MatchingSideBar />
       <BuySignUp />
-      <SellerAcctLogin />
+      <SellerAcctLogin /> */}
       <MyMatches />
+      {/* <BuyerAcctLogin /> */}
       <MyListings />
     </MuiThemeProvider>
     

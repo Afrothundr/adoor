@@ -19,17 +19,7 @@ body {
     text-align: center;
       }
 
-img {
-    align-items: center;
-}
-  
-.sellerLink {
-    grid-area: link;
-    font-size: 135%;
-    text-align: center;
-    padding: 2%;
-      }
-  
+
   
 .wrapper {
     display: grid;
@@ -38,8 +28,7 @@ img {
     grid-template-areas:
         "header header header"
         "signUp signUp signUp"
-        "....... buttons ......"
-        "link link link";
+        "....... buttons ......";
     background-color: #fff;
     color: #444;
       }

@@ -7,17 +7,21 @@ import BuySignUp from './components/BuyAcctLogin/BuyerAcctLogin';
 import SellerAcctLogin from './components/SellerAcctLogin/SellerAcctLogin';
 import MyMatches from './components/myMatches/myMatches';
 import MyListings  from './components/MyListings/MyListingsTable';
+import matchingContainer from './components/Matching/MatchingContainer';
+import matchingPage from './components/Matching/MatchingPage.js';
 
 const App = props => {
   return (
     <MuiThemeProvider>
-      <UserPrefQuiz />
+      {/* <UserPrefQuiz />
       <StandardSideBar />
-      <MatchingSideBar />
-      <BuySignUp />
+      <MatchingSideBar /> */}
+      {/* <BuySignUp />
       <SellerAcctLogin />
       <MyMatches />
-      <MyListings />
+      <MyListings /> */} 
+      {/* <matchingContainer /> */}
+      <matchingPage />
     </MuiThemeProvider>
     
   );

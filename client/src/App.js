@@ -23,7 +23,6 @@ const App = props => {
       {/* <matchingContainer /> */}
       <matchingPage />
     </MuiThemeProvider>
-    
   );
 }
 

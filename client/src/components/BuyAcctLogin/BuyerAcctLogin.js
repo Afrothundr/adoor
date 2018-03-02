@@ -1,7 +1,7 @@
 import React from 'react';
 import FacebookLoginButton from 'react-social-login-buttons/lib/buttons/FacebookLoginButton';
 import GoogleLoginButton from 'react-social-login-buttons/lib/buttons/GoogleLoginButton';
-import axios from 'axios';
+
 
 const styles = {
     display: {

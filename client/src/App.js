@@ -10,15 +10,16 @@ import MyListings  from './components/MyListings/MyListingsTable';
 
 const App = props => {
   return (
+    <div>
       {/* <UserPrefQuiz />
       <StandardSideBar />
       <MatchingSideBar />
       <BuySignUp />
-      <SellerAcctLogin /> */}
+      <SellerAcctLogin />
       <MyMatches />
-      {/* <BuyerAcctLogin /> */}
+      <BuyerAcctLogin /> */}
       <MyListings />
-    
+    </div>
   );
 }
 

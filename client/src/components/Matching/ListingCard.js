@@ -18,8 +18,8 @@ class ListingCard extends Component {
     }
 
     handleDecisionButton = (decision, event) => {
-        console.log(decision);
-        this.props.onDecision(decision);
+        console.log(this.state.listing._id);
+        this.props.onDecision(decision, this.state.listing._id);
     }
 
 
@@ -31,7 +31,7 @@ class ListingCard extends Component {
 
         return (
             <Card style={{ width: '400px' }} rounded={true} className="card" >
-                <CardMedia overlay={<CardTitle title={this.props.title} subtitle="Overlay subtitle" />}>
+                <CardMedia overlay={<CardTitle title={this.props.title} />}>
                     <div className="img-slider-container">
                         <Slider {...sliderSettings}>
                             <LazyLoad height={200} >

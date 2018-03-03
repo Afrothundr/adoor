@@ -5,11 +5,18 @@ import BuyerProfileCreate from './pages/buyerCreateProfile';
 import BuyerLogin from './pages/buyerLogin';
 import SellerAcctLogin from './pages/sellerLogin';
 import Matching from './pages/matching';
+import Home from './pages/index';
+
 
 const App = props => {
   return (
     <div>
-      <Matching />
+      <Home />
+      {/* <BuyerLogin /> */}
+      {/* <BuyerProfileCreate /> */}
+      {/* <Matching/> */}
+      {/* <SellerAcctLogin /> */}
+      {/* <SellerDashboard /> */}
     </div>
   );
 }

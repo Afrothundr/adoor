@@ -1,0 +1,43 @@
+/* Home Page */
+    /* Avery to Grid */
+
+/* Buyer Login */
+    /* Nick to Grid */
+    .wrapper-buyer-login{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 100% 100%;
+    }
+
+/* Seller Login */
+    /* Nick to Grid */
+    .wrapper-seller-login{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 100% 100%;
+    }
+
+/* Buyer Create Profile  */
+    /* Nick to Grid */
+    .wrapper-create-profile{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 100% 100%;
+    }
+
+/* Buyer Matching */
+    /* Avery to Grid */
+    .wrapper-matching{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 100% 100%;
+    }
+
+
+/* Seller Dashboard */
+    /* Nick to Grid */
+    .wrapper-seller-dashboard{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 100% 100%;
+    }

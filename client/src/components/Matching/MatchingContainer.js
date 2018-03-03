@@ -12,14 +12,27 @@ class MatchingContainer extends Component {
         //intial state
         this.state = {
             //replace userId with stored cookie value
-            userId: '5a8df22e0beba811104ca437'
+            userId: '5a8df22e0beba811104ca437',
+            listings: []
         }
         this.next = this.next.bind(this)
     }
     componentWillMount() {
+        API.getListings().then(listings => {
+            listings.data.forEach(listing => {
+                this.state.listings.push(listing);
+            })
+        });
+        
         API.getUser(this.state.userId).then(user => {
             this.setState({ user: user.data });
-        })
+        });
+    }
+
+    refreshUser() {
+        API.getUser(this.state.userId).then(user => {
+            this.setState({ user: user.data });
+        });
     }
     //handle decision
     handleDecision = decision => {
@@ -45,8 +58,8 @@ class MatchingContainer extends Component {
                     }).catch(err => {
                         console.log(err);
                     })
-                } 
-                
+                }
+
             } else {
                 //User has not gotten any matches yet
                 let score = (this.compareCompatibility(user, listing.data));
@@ -55,12 +68,12 @@ class MatchingContainer extends Component {
                     API.createMatch(user._id, listing.data._id).then(match => {
                         console.log("Match Added!");
                         //refresh user state;
-                        this.componentWillMount();
+                        this.refreshUser();
                     }).catch(err => {
                         console.log(err);
                     })
-                } 
-                
+                }
+
             }
         })
     }
@@ -93,11 +106,18 @@ class MatchingContainer extends Component {
             draggable: false,
             beforeChange: this.handleSlideChange
         };
+
         return (
             <Slider ref={c => this.slider = c} {...settings} className="matching-container" style={{ width: "500px" }}>
-                <div><ListingCard key={0} title="3 bed 2 bath" onDecision={this.handleDecision} /></div>
-                <div><ListingCard key={1} onDecision={this.handleDecision} /></div>
-                <div><ListingCard key={2} onDecision={this.handleDecision} /></div>
+                {
+                    this.state.listings.map(listing => {
+                        return (
+                            <div key={listing._id}>
+                                <ListingCard listingInfo={listing} key={listing._id} title={`${listing.bedrooms} bed ${listing.bathrooms} bath`} onDecision={this.handleDecision} />
+                            </div>
+                        )
+                    })
+                }
             </Slider>
         );
     }

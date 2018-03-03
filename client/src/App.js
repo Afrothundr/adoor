@@ -11,7 +11,6 @@ const App = props => {
     <div>
       <Matching />
     </div>
-
   );
 }
 

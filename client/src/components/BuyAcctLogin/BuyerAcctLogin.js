@@ -18,7 +18,7 @@ const logo = "http://via.placeholder.com/250x150";
 
 const BuySignUp = () => (
 
-    <div style={styles.display}><img src={logo} />
+    <div style={styles.display}><img alt="" src={logo} />
         <h1>Sign Up</h1>
         <FacebookLoginButton onClick={() => alert('Hello')} />
 

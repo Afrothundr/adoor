@@ -1,5 +1,5 @@
 import React from "react";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import SellerDashboard from './pages/sellerDashboard';
 import BuyerProfileCreate from './pages/buyerCreateProfile';
 import BuyerLogin from './pages/buyerLogin';
@@ -10,14 +10,17 @@ import Home from './pages/index';
 
 const App = props => {
   return (
+    <Router history={Router}>
     <div>
-      <Home />
-      {/* <BuyerLogin /> */}
-      {/* <BuyerProfileCreate /> */}
-      {/* <Matching/> */}
-      {/* <SellerAcctLogin /> */}
-      {/* <SellerDashboard /> */}
+      <Route exact path="/" component={Home}></Route>
+      <Route exact path="/matching" component={Matching}></Route>
+      <Route exact path="/seller/dashboard" component={SellerDashboard}></Route>
+      <Route exact path="/profile/login" component={BuyerLogin}></Route>
+      <Route exact path="/profile/create" component={BuyerProfileCreate}></Route>
+      <Route exact path="/seller/login" component={SellerAcctLogin}></Route>
+
     </div>
+    </Router>
   );
 }
 

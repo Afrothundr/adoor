@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+// import './reset.css';
+import './standardSidebar.css';
 
 
 // placeholder image. need to exchange with logo image
@@ -11,17 +13,21 @@ const tagLineText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ma
 class StandardSideBar extends Component {
     render() {
         return (
-          <div className="standard-sidebar">
-           <div><img alt="" src={logo} /></div>
-           <div>
-               <h2>{tagLineHeader}</h2>
-               <p>{tagLineText}</p>
-           </div>
-           <div><img alt="" src={stockImg} /></div>
-          </div>
+            <div className="standard-sidebar">
+                <div>
+                    <img alt="" src={logo} />
+                </div>
+                <div>
+                    <h2>{tagLineHeader}</h2>
+                    <p>{tagLineText}</p>
+                </div>
+                <div>
+                    <img alt="" src={stockImg} />
+                </div>
+            </div>
         );
-      }
-
     }
+
+}
 
 export default StandardSideBar;

@@ -9,7 +9,7 @@ import Matching from './pages/matching';
 const App = props => {
   return (
     <div>
-      <Matching />
+      <BuyerProfileCreate />
     </div>
   );
 }

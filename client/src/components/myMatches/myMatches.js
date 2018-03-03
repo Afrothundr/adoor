@@ -54,7 +54,7 @@ class MyMatches extends Component {
         return (
             <div className="test">
                         <Table >
-                        <TableHeader displayRowCheckbox={false}>
+                        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                           <TableRow >
                             <TableHeaderColumn className="list-headers">Address</TableHeaderColumn>
                             <TableHeaderColumn className="list-headers">City</TableHeaderColumn>

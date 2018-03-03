@@ -8,7 +8,7 @@ import SellerAcctLogin from './pages/sellerLogin'
 const App = props => {
   return (
     <div>
-      <SellerAcctLogin />
+      <SellerDashboard />
     </div>
 
   );

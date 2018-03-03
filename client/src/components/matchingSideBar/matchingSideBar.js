@@ -13,7 +13,7 @@ class MatchingSideBar extends Component {
     render() {
         return (
           <div className="matching-sidebar">
-            <div><img src={logo} /></div>
+            <div><img alt="" src={logo} /></div>
                 <div>
                     <h2>{tagLineHeader}</h2>
                     <p>{tagLineTextShort}</p>

@@ -12,12 +12,12 @@ class StandardSideBar extends Component {
     render() {
         return (
           <div className="standard-sidebar">
-           <div><img src={logo} /></div>
+           <div><img alt="" src={logo} /></div>
            <div>
                <h2>{tagLineHeader}</h2>
                <p>{tagLineText}</p>
            </div>
-           <div><img src={stockImg} /></div>
+           <div><img alt="" src={stockImg} /></div>
           </div>
         );
       }

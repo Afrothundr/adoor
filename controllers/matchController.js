@@ -16,12 +16,12 @@ module.exports = {
   },
   create: function(req, res) {
     let match = {
-      matches: req.body.match
+      history: req.body.match
     }
     db.Match
       .create(match)
       .then(dbModel => {
-        return db.User.findOneAndUpdate({ _id: req.body.userId }, { history: dbModel._id }, { new: true });
+        return db.User.findOneAndUpdate({ _id: req.body.userId }, { matches: dbModel._id }, { new: true });
         })
       .then(dbUser => {
         res.json(dbUser);

@@ -10,6 +10,7 @@ const App = props => {
     <div>
       <SellerAcctLogin />
     </div>
+
   );
 }
 

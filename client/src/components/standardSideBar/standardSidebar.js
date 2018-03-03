@@ -17,7 +17,7 @@ class StandardSideBar extends Component {
                <h2>{tagLineHeader}</h2>
                <p>{tagLineText}</p>
            </div>
-           <div><img src={stockImg} /></div>
+           <div><img alt="" src={stockImg} /></div>
           </div>
         );
       }

@@ -17,6 +17,10 @@ const responseGoogle = () => {
         //console.log("Response from google: " + response);
 };
 
+import styles from './BuyerAcctLogin.css'
+
+
+
 const logo = "http://via.placeholder.com/250x150";
   
   const BuySignUp = () => (
@@ -36,6 +40,23 @@ const logo = "http://via.placeholder.com/250x150";
         />, */}
 \
         <a href="SellerAcctLogin">Are you a seller? Click here</a>
+
+    <div className={styles}>
+    <div className='wrapper'>
+        <div className='header'>
+            <img src={logo} alt=""/>
+        </div>
+            <div className='signUp'>
+                <h1>Sign Up</h1>
+            </div>
+                <div className='buttons'>
+                    <FacebookLoginButton onClick={() => alert('Hello')} />
+                    <GoogleLoginButton href={"/auth/google"} />
+                </div>
+                <div className='sellerLink'>
+                    <a href="SellerAcctLogin">Are you a seller? Click here</a>
+                </div>
+    </div>
     </div>
   );
   

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
+import "./myMatches.css";
 import API from '../../utils/API';
 import {
     Table,
@@ -7,9 +9,9 @@ import {
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
-} from 'material-ui/Table';
+  } from 'material-ui/Table';
 
-class MyListings extends Component {
+class MyMatches extends Component {
     constructor() {
         super();
         this.state = {
@@ -20,7 +22,7 @@ class MyListings extends Component {
     }
 
     //functions
-    // Get matched listing IDs from User API
+    // Get mathed listing IDs from User API
     getMatches = () => {
         API.getUser(this.state.userId)
             .then((user) => {
@@ -51,36 +53,35 @@ class MyListings extends Component {
     render() {
         return (
             <div className="test">
-                <Table >
-                    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                        <TableRow >
+                        <Table >
+                        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                          <TableRow >
                             <TableHeaderColumn className="list-headers">Address</TableHeaderColumn>
                             <TableHeaderColumn className="list-headers">City</TableHeaderColumn>
                             <TableHeaderColumn className="list-headers">Zip Code</TableHeaderColumn>
                             <TableHeaderColumn className="list-headers">Listing Price</TableHeaderColumn>
                             <TableHeaderColumn className="list-headers">Bedrooms</TableHeaderColumn>
                             <TableHeaderColumn className="list-headers">Bathrooms</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody displayRowCheckbox={false}>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody displayRowCheckbox={false}>
                         {this.state.listings.map(listing => {
-                            return (
-                                <TableRow>
-                                    <TableRowColumn className="list-items">{listing.address}</TableRowColumn>
-                                    <TableRowColumn className="list-items">{listing.city}</TableRowColumn>
-                                    <TableRowColumn className="list-items">{listing.zipcode}</TableRowColumn>
-                                    <TableRowColumn className="list-items">{`$${listing.price}`}</TableRowColumn>
-                                    <TableRowColumn className="list-items">{listing.bedrooms}</TableRowColumn>
-                                    <TableRowColumn className="list-items">{listing.bathrooms}</TableRowColumn>
-                                </TableRow>
-                            )
-                        })
-                        }
-                    </TableBody>
-                </Table>
+                    return (
+                          <TableRow>
+                            <TableRowColumn className="list-items">{listing.address}</TableRowColumn>
+                            <TableRowColumn className="list-items">{listing.city}</TableRowColumn>
+                            <TableRowColumn className="list-items">{listing.zipcode}</TableRowColumn>
+                            <TableRowColumn className="list-items">{`$${listing.price}`}</TableRowColumn>
+                            <TableRowColumn className="list-items">{listing.bedrooms}</TableRowColumn>
+                            <TableRowColumn className="list-items">{listing.bathrooms}</TableRowColumn>
+                          </TableRow>
+                        )})
+                }
+                        </TableBody>
+                      </Table>
             </div>
         )
     }
 }
 
-export default MyListings;
+export default MyMatches;

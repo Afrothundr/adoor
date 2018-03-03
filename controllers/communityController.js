@@ -17,10 +17,10 @@ module.exports = {
   create: function(req, res) {
     let newListingCommunity = {
         hospitalsCount: req.body.hospitalsCount,
-        crimesCount: req.body.hospitalsCount,
-        parksCount: req.body.hospitalsCount,
-        groceryStoresCount: req.body.hospitalsCount,
-        bestSchoolRating: req.body.hospitalsCount
+        crimesCount: req.body.crimesCount,
+        parksCount: req.body.parksCount,
+        groceryStoresCount: req.body.groceryStoresCount,
+        bestSchoolRating: req.body.bestSchoolRating
     }
     console.log(req.body);
     db.Community

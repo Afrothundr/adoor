@@ -26,10 +26,18 @@ export default {
         return axios.get("/api/seller/" + id);
     },
     createMatch: function (userId, listingId) {
-        return axios.post("/api/match", listingId);
+        let newMatch = {
+            userId: userId,
+            match: listingId
+        }
+        return axios.post("/api/match", newMatch);
     },
-    addMatch: function (userId, listingId) {
-        return axios.put("/api/match", listingId);
+    addMatch: function (matchId, listingId) {
+        let newMatch = {
+            id: matchId,
+            match: listingId
+        }
+        return axios.put("/api/match/update", newMatch);
     },
     createPref: function (preferences) {
         return axios.post("/api/preferences", preferences);

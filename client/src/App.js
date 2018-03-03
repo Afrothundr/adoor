@@ -10,7 +10,6 @@ const App = props => {
     <div>
       <SellerDashboard />
     </div>
-
   );
 }
 

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const HomePage = () => (
     <div className='Home'>
-        {/* <img src={require('./imgs/option1.jpg')} id='bg' alt="bg" /> */}
         <div className='logo'>
             <img src={require('./imgs/logo.png')} id='logo' alt="logo" />
         </div>

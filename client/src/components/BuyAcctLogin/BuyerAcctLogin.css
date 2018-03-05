@@ -1,28 +1,19 @@
-body {
-    margin: 40px;
-  }
-  
+/* 
 .signUp {
     grid-area: signUp;
-    text-align: center;
+
     font-size: 175%;
     }
   
 .buttons {
     grid-area: buttons;
-    text-align: center;
+
     font-size: 125%;
     }
   
-.header {
-    grid-area: header;
-    text-align: center;
-      }
 
-img {
-    align-items: center;
-}
-  
+
+
 .sellerLink {
     grid-area: link;
     font-size: 135%;
@@ -34,12 +25,12 @@ img {
 .wrapper {
     display: grid;
     grid-gap: 5px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100%;
     grid-template-areas:
-        "header header header"
         "signUp signUp signUp"
         "....... buttons ......"
         "link link link";
     background-color: #fff;
     color: #444;
-      }
+      } */

@@ -9,6 +9,7 @@ const session = require('express-session');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
+const cors = require('cors');
 
 //instances
 const app = express();
@@ -21,8 +22,21 @@ app.use(
     })
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+app.use(cors());
+//To prevent errors from Cross Origin Resource Sharing, we will set 
+//our headers to allow CORS with middleware like so:
+// app.use(function(req, res, next) {
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Credentials', 'true');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+//    //and remove cacheing so we get the most recent comments
+//     res.setHeader('Cache-Control', 'no-cache');
+//     next();
+//    });
 
 //setup port
 const PORT = process.env.PORT || 3001;
@@ -30,6 +44,9 @@ const PORT = process.env.PORT || 3001;
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+
 // Serve up static assets
 app.use(express.static("client/build"));
 // Add routes, both API and view
@@ -38,9 +55,10 @@ app.use(router);
 //Passport and Express-Session logic
 app.use(session({secret: 'anything'}));
 
+
 //Access oauth strategies
 require('./config/passport')(app);
-require("./routes/auth/google-auth-routes")(router);
+require("./routes/auth/google-auth-routes");
 
 
 // Set up promises with mongoose

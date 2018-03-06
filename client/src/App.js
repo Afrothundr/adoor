@@ -5,12 +5,13 @@ import BuyerProfileCreate from './pages/buyerCreateProfile';
 import BuyerLogin from './pages/buyerLogin';
 import SellerAcctLogin from './pages/sellerLogin';
 import Matching from './pages/matching';
+import BuyerAcctLogin from '../src/components/BuyAcctLogin/BuyerAcctLogin';
 
 const App = props => {
   return (
-    <div>
-      <Matching />
-    </div>
+    <MuiThemeProvider>
+      <BuyerAcctLogin />
+    </MuiThemeProvider>
   );
 }
 

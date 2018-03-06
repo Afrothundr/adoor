@@ -18,7 +18,6 @@ const HomePage = () => (
                 <RaisedButton label="Sign Up" secondary={true} className='button' />
             </Link>
         </div>
-
     </div>
 
 

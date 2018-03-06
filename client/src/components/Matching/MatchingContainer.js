@@ -13,7 +13,8 @@ class MatchingContainer extends Component {
         this.state = {
             //replace userId with stored cookie value
             userId: '5a8df22e0beba811104ca437',
-            listings: []
+            listings: [],
+            
         }
         this.next = this.next.bind(this)
     }
@@ -35,10 +36,10 @@ class MatchingContainer extends Component {
         });
     }
     //handle decision
-    handleDecision = decision => {
+    handleDecision = (decision, listingId) => {
         if (decision === 'Yes') {
             console.log('I like this');
-            this.checkForMatch(this.state.user, "5a98d0104483969b4d05b435");
+            this.checkForMatch(this.state.user, listingId);
             this.next();
         } else {
             console.log('I hate this');

@@ -1,5 +1,4 @@
 import React from "react";
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import MatchingContainer  from '../components/Matching/MatchingContainer';
 import MatchingSideBar  from '../components/matchingSideBar/matchingSideBar';
 import './gridStyles.css';

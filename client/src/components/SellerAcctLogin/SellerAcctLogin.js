@@ -1,17 +1,19 @@
 import React from 'react';
 import FacebookLoginButton from 'react-social-login-buttons/lib/buttons/FacebookLoginButton';
 import GoogleLoginButton from 'react-social-login-buttons/lib/buttons/GoogleLoginButton';
-import styles from './SellerAcctLogin.js';
+import '../../pages/gridStyles.css'
 
 
 
 const logo = "http://via.placeholder.com/250x150";
   
   const SellSignUp = () => (
-    <div className={styles}>
-    <div className='wrapper'>
+    <div className='sellwrapper'>
         <div className='header'>
-            <img src={logo} alt=""/>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
         </div>
     <div className='signUp'>
         <h1>Sign Up</h1>
@@ -20,7 +22,6 @@ const logo = "http://via.placeholder.com/250x150";
         <FacebookLoginButton onClick={() => alert('Hello')} />
         <GoogleLoginButton onClick={() => alert('Hello')} />
         </div>
-    </div>
     </div>
   );
   

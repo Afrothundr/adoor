@@ -10,6 +10,7 @@ import cloudinary from 'cloudinary';
 import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import axios from 'axios';
 import ZipCodes from '../../utils/zipcodes';
+import './sellerStyles.css';
 
 const CLOUDINARY_UPLOAD_PRESET = 'uz4557ai';
 const CLOUDINARY_UPLOAD_URL = '	https://api.cloudinary.com/v1_1/dgha5r7ax/upload';

@@ -1,8 +1,12 @@
 
-.standard-sidebar{
-    width: 80%;
+.component-sidebar{
+    width: 50%;
     margin: auto;
     text-align: center;
-    background-color: #8a8a8a;
     padding: 50px 25px;
+    margin-top: 150px;
+}
+
+.image-container{
+    width: 40%;
 }

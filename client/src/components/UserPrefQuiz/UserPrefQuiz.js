@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { DropDownMenu, MenuItem } from 'material-ui/DropDownMenu';
 import Slider from 'material-ui/Slider';
+import "./UserPrefQuiz.css";
 
 
 class UserPrefQuiz extends Component {
@@ -26,9 +27,9 @@ class UserPrefQuiz extends Component {
         let userPref = this.calculatePrefs();
         //store preferences in database and update user object
         API.createPref(userPref)
-        .then((preferences) => {
-            console.log(preferences.data);
-        }).catch(err => console.log(err));
+            .then((preferences) => {
+                console.log(preferences.data);
+            }).catch(err => console.log(err));
     }
     handleChange = event => {
         const { name, value } = event.target;
@@ -37,7 +38,7 @@ class UserPrefQuiz extends Component {
         });
     }
     handleZipCodeChange = (event, index, value) => {
-        this.setState({zipcode: value});
+        this.setState({ zipcode: value });
     }
 
     handleBedroomSliderChange = (event, value) => {
@@ -58,18 +59,18 @@ class UserPrefQuiz extends Component {
         let hospitals = false;
         let saftey = false;
         let parks = false;
-        
+
         if (this.state.kids === 'true') {
             grocery = true;
-          } if (this.state.age > 0 && this.state.age < 20) {
+        } if (this.state.age > 0 && this.state.age < 20) {
             schools = true;
             hospitals = true;
-          } if (this.state.security === 'true') {
+        } if (this.state.security === 'true') {
             saftey = true;
-          } if (this.state.pets === 'true') {
+        } if (this.state.pets === 'true') {
             parks = true;
-          }
-        
+        }
+
         return {
             userId: this.state.userId,
             caresAboutSchools: schools,
@@ -84,11 +85,11 @@ class UserPrefQuiz extends Component {
         };
     }
 
-//JSX Render
+    //JSX Render
     render() {
         //input form
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="wrapper-form" onSubmit={this.handleSubmit}>
                 <h1>Just a few questions...</h1>
                 <h3>Do You Have Kids?</h3>
                 <RadioButtonGroup name="kids" onChange={this.handleChange}>
@@ -103,7 +104,7 @@ class UserPrefQuiz extends Component {
                     <RadioButton value={10} label="5-10" />
                     <RadioButton value={15} label="10-15" />
                     <RadioButton value={20} label="15-20" />
-                    <RadioButton value={25} label="20+" />
+                    <RadioButton value={25} label="20+"/>
                 </RadioButtonGroup>
 
                 <h3>Do You Like Living by Yourself?</h3>
@@ -125,7 +126,7 @@ class UserPrefQuiz extends Component {
                 <h3>How Many Bathrooms?</h3>
                 <p>{this.state.bathrooms}</p>
                 <Slider name="bathroomSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBathroomSliderChange} />
-                
+
 
                 <h3>What's Your Budget?</h3>
                 <RadioButtonGroup name="budget" onChange={this.handleChange}>

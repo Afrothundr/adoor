@@ -1,0 +1,17 @@
+.wrapper-form{
+    padding: 100px;
+    width: 500px;
+    margin: auto;
+    align-content: center;
+    text-align: center;
+}
+
+h1{
+    font-size: 40px;
+}
+
+RadioButton{
+    display: inline-block;
+    width: auto; 
+    margin: 0px 5px;
+}

@@ -7,29 +7,11 @@ import BuyerProfileCreate from './pages/buyerCreateProfile';
 import BuyerLogin from './pages/buyerLogin';
 import SellerAcctLogin from './pages/sellerLogin';
 import Matching from './pages/matching';
-import Home from './pages/index';
-
+import BuyerAcctLogin from '../src/components/BuyAcctLogin/BuyerAcctLogin';
 
 const App = props => {
   return (
-    <Route render={({ location }) => (
-      <TransitionGroup>
-        <CSSTransition
-          key={location.key}
-          timeout={300}
-          classNames='fade'
-        >
-          <Switch location={ location }>
-            <Route exact path="/" component={Home}></Route>
-            <Route exact path="/matching" component={Matching}></Route>
-            <Route exact path="/seller/dashboard" component={SellerDashboard}></Route>
-            <Route exact path="/profile/login" component={BuyerLogin}></Route>
-            <Route exact path="/profile/create" component={BuyerProfileCreate}></Route>
-            <Route exact path="/seller/login" component={SellerAcctLogin}></Route>
-          </Switch>
-        </CSSTransition>
-      </TransitionGroup>
-    )} />
+      <BuyerAcctLogin />
   );
 }
 

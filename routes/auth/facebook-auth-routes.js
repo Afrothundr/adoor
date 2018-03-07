@@ -3,8 +3,8 @@ const router = require("express").Router();
 
 router.route('/callback')
 	.get(passport.authenticate('facebook',{
-		successRedirect: '/matching',
-		failure: '/error/'
+		successRedirect: '/',
+		failure: '/error'
 }));
 
 

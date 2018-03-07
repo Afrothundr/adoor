@@ -10,14 +10,15 @@ module.exports = function(){
 		passReqToCallback: true
 	},
 	function(req, accessToken, refreshToken, profile, done){
-		let user = {};
-		user.displayName = profile.displayName;
+		console.log("IN FACEBOOK STRATEGY");
+		// let user = {};
+		// user.displayName = profile.displayName;
 
-		user.facebook = {};
-		user.facebook.id = profile.id;
-		user.facebook.token = accessToken;
+		// user.facebook = {};
+		// user.facebook.id = profile.id;
+		// user.facebook.token = accessToken;
 
-		done(null, user);
+		// done(null, user);
 
 	}));
 };

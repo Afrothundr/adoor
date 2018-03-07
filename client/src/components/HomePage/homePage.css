@@ -1,0 +1,29 @@
+.home-wrapper{
+    display:grid;
+    grid-template-rows: 1fr;
+    justify-items: stretch;
+}
+
+.logo{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+.buttons{
+    margin: auto;
+    width: 25%;
+    text-align: center;
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.logo-img{
+    margin-top: 250px;
+    height: 250px;
+}
+
+.buttonOne{
+    margin-top: 50px;
+    margin-bottom: 10px;
+}

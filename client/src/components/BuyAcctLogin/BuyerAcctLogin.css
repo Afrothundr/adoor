@@ -1,36 +1,17 @@
-/* 
-.signUp {
-    grid-area: signUp;
+.component-wrapper{
+    display:grid;
+    grid-template-rows: 1fr 2fr 1fr;
+    
+}
 
-    font-size: 175%;
-    }
-  
-.buttons {
-    grid-area: buttons;
-
-    font-size: 125%;
-    }
-  
-
-
-
-.sellerLink {
-    grid-area: link;
-    font-size: 135%;
+.signUp{
+    margin: auto;
+    width: 50%;
     text-align: center;
-    padding: 2%;
-      }
-  
-  
-.wrapper {
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: 1fr;
-    grid-template-rows: 100%;
-    grid-template-areas:
-        "signUp signUp signUp"
-        "....... buttons ......"
-        "link link link";
-    background-color: #fff;
-    color: #444;
-      } */
+}
+
+.buttons{
+    margin: auto;
+    width: 10%;
+    text-align: center;
+}

@@ -10,10 +10,12 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
 const cors = require('cors');
+const whitelist = ['https://accounts.google.com'];
 
 //instances
 const app = express();
 const router = express.Router();
+
 
 app.use(
     cookieSession({
@@ -24,19 +26,32 @@ app.use(
 
 // app.use(passport.initialize());
 // app.use(passport.session());
+var corsOption = {
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    exposedHeaders: ['x-auth-token']
+  };
+app.use(cors(corsOption));
 
-app.use(cors());
+//try this underneath cors 
+// app.all('*', function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+// });
 //To prevent errors from Cross Origin Resource Sharing, we will set 
 //our headers to allow CORS with middleware like so:
-// app.use(function(req, res, next) {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
 //     res.setHeader('Access-Control-Allow-Credentials', 'true');
 //     res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
 //     res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
 //    //and remove cacheing so we get the most recent comments
 //     res.setHeader('Cache-Control', 'no-cache');
-//     next();
-//    });
+       next();
+   });
 
 //setup port
 const PORT = process.env.PORT || 3001;

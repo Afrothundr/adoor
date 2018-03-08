@@ -5,14 +5,13 @@ import MatchingSideBar from '../components/matchingSideBar/matchingSideBar';
 
 const Matching = props => {
   return (
-    <div className="wrapper-main">
-      <div className="content-main">
+    <div>
+      <div>
         <MatchingContainer />
       </div>
-      <div className="matching-sidebar">
+      <div>
         <MatchingSideBar />
       </div>
-
     </div>
   );
 }

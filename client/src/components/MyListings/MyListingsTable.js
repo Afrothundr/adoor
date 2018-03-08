@@ -40,6 +40,8 @@ class MyListings extends Component {
     render() {
         return (
             <div className="test">
+            <br></br>
+            <br></br>
                 <Table >
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                         <TableRow >

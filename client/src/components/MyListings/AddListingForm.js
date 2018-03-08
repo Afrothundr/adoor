@@ -10,6 +10,7 @@ import ZipCodes from '../../utils/zipcodes';
 import Keys from '../../utils/keys';
 import API from '../../utils/API';
 import './AddListingForm.css';
+import './sellerStyles.css';
 
 
 const CLOUDINARY_UPLOAD_PRESET = 'uz4557ai';

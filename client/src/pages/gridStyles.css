@@ -1,43 +1,80 @@
-/* Home Page */
-    /* Avery to Grid */
 
-/* Buyer Login */
-    /* Nick to Grid */
-    .wrapper-buyer-login{
-        display: grid;
-        grid-template-columns: 70% 30%;
-        grid-template-rows: 100% 100%;
-    }
+/* Main  */
+.wrapper-main{
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    border: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-/* Seller Login */
-    /* Nick to Grid */
-    .wrapper-seller-login{
-        display: grid;
-        grid-template-columns: 70% 30%;
-        grid-template-rows: 100% 100%;
-    }
+.wrapper-seller-dashboard{
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+    border: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-/* Buyer Create Profile  */
-    /* Nick to Grid */
-    .wrapper-create-profile{
-        display: grid;
-        grid-template-columns: 70% 30%;
-        grid-template-rows: 100% 100%;
-    }
+.dashboard-main{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
 
-/* Buyer Matching */
-    /* Avery to Grid */
-    .wrapper-matching{
-        display: grid;
-        grid-template-columns: 70% 30%;
-        grid-template-rows: 100% 100%;
-    }
+.content-wrapper{
+    display: grid;
+    grid-template-rows: 1fr 10fr 1fr;
+}
 
+.header{
+    justify-items: stretch;
+    background-color: #F0F0F0;
+    
+}
 
-/* Seller Dashboard */
-    /* Nick to Grid */
-    .wrapper-seller-dashboard{
-        display: grid;
-        grid-template-columns: 70% 30%;
-        grid-template-rows: 100% 100%;
-    }
+.footer{
+    background-color: #F0F0F0;
+}
+.content-main{
+    display:grid;
+    grid-row-start: 2;
+    align-items: center;
+    background-image: url("../pages/imgs/option1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    
+}
+
+.seller-main{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.standard-sidebar{
+    grid-column-start: 2;
+    grid-row-start: 1;
+    align-items: center;
+    justify-items: stretch;
+    background-color:#A9A9A9;
+    color: #ffffff;
+    font-weight: bolder;
+    border: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.add-listing-sidebar{
+    grid-column-start: 2;
+    grid-row-start: 1;
+    justify-items: stretch;
+}
+
+.home-page{
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+    justify-items: stretch;
+    background-image: url("../pages/imgs/option1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    max-height: 1000px;
+    
+}

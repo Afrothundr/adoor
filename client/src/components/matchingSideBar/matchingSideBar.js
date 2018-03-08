@@ -1,31 +1,30 @@
 import React, { Component } from "react";
 
-// placeholder image. need to exchange with logo image
-const logo = "http://via.placeholder.com/250x150";
-// placeholder image. Need to echange with a stock image of a home
-const tagLineHeader = "Adoor Matching"
-const tagLineTextShort = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim porta fermentum. Aenean maximus justo vestibulum.";
-
-// needs to calculate the number of matches the user has
-let matchCounter = 0;
-
 class MatchingSideBar extends Component {
     render() {
         return (
-          <div className="matching-sidebar">
-            <div><img alt="" src={logo} /></div>
-                <div>
-                    <h2>{tagLineHeader}</h2>
-                    <p>{tagLineTextShort}</p>
-                </div>
-                {/* placeholder button. Replace with a better formatted solution */}
-                <div> 
-                    <button>My Matches</button>
-                </div>
-                <div>
-                    <p>You Have {matchCounter} matches!</p>
-                </div>
-          </div>
+            <div className="component-sidebar">
+            <div>
+                <p>Create An Account</p>
+                {/* <img className="image-container" src={require("./imgs/createAccount.png")} alt='create an account' /> */}
+                <hr />
+            </div>
+            <div>
+                <p>Choose Your Preferences</p>
+                {/* <img className="image-container" src={require("./imgs/preferences.png")} alt='create an account' /> */}
+                <hr />
+            </div>
+            <div>
+                <p>Discover Your Matches</p>
+                {/* <img className="image-container" src={require("./imgs/matchesTwo.png")} alt='create an account' /> */}
+                <hr />
+            </div>
+            <div>
+                <p>Find Your Next Home</p>
+                {/* <img className="image-container" src={require("./imgs/home.png")} alt='create an account' /> */}
+                <hr />
+            </div>
+        </div>
         );
       }
 

@@ -7,8 +7,8 @@ import './gridStyles.css';
 
 const SellerDashboard = props => {
   return (
-    <div className="wrapper-main">
-      <div className="dashboard-header"><Header /></div>
+    <div className="wrapper-seller-dashboard">
+      <div className="header"><Header /></div>
       <div className="dashboard-main">
         <div><MyListingsTable /></div>
         <div><AddListingForm /></div>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Card, CardMedia, CardTitle, CardActions } from 'material-ui/Card';
-import LazyLoad from 'react-lazyload';
 import RaisedButton from 'material-ui/RaisedButton';
 import "./ListingCard.css";
 import Slider from 'react-slick';
@@ -11,8 +10,6 @@ class ListingCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //replace userId with stored cookie value
-            userId: '5a8f3ab48896fd45f054117d',
             listing: this.props.listingInfo
         }
     }
@@ -22,7 +19,13 @@ class ListingCard extends Component {
         this.props.onDecision(decision, this.state.listing._id);
     }
 
-
+    cropImage = (url) => {
+        var frontUrl = url.slice(0, 49);
+        var backUrl = url.slice(49);
+        var crop = '/c_scale,w_500'
+        var finalUrl = frontUrl + crop + backUrl
+        return finalUrl;
+    }
 
     render() {
         let sliderSettings = {
@@ -34,9 +37,12 @@ class ListingCard extends Component {
                 <CardMedia overlay={<CardTitle title={this.props.title} />}>
                     <div className="img-slider-container">
                         <Slider {...sliderSettings}>
-                            <LazyLoad height={200} >
-                                <img alt="" src={this.props.listingInfo.picturePath} />
-                            </LazyLoad>
+                            {this.props.listingInfo.picturePath.map(picture => {
+                                let croppedImage = this.cropImage(picture);
+                                return (
+                                    <img alt="" key={picture} style={{ width: "400px" }} src={croppedImage} />
+                                )
+                            })}
                         </Slider>
                     </div>
                 </CardMedia>

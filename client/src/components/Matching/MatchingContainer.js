@@ -14,7 +14,7 @@ class MatchingContainer extends Component {
             //replace userId with stored cookie value
             userId: '5a8df22e0beba811104ca437',
             listings: [],
-            
+
         }
         this.next = this.next.bind(this)
     }
@@ -24,7 +24,7 @@ class MatchingContainer extends Component {
                 this.state.listings.push(listing);
             })
         });
-        
+
         API.getUser(this.state.userId).then(user => {
             this.setState({ user: user.data });
         });

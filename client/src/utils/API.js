@@ -16,7 +16,7 @@ export default {
     getListing: function (id) {
         return axios.get("/api/listing/" + id);
     },
-    createListing: function (sellerId, listing) {
+    createListing: function (listing) {
         return axios.post("/api/listing", listing);
     },
     getSellers: function () {

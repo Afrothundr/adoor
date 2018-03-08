@@ -1,7 +1,7 @@
 import React from "react";
 import MatchingContainer from '../components/Matching/MatchingContainer';
 import MatchingSideBar from '../components/matchingSideBar/matchingSideBar';
-import './gridStyles.css';
+// import './gridStyles.css';
 
 const Matching = props => {
   return (

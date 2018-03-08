@@ -12,7 +12,7 @@ var listingSchema = new Schema({
     bedrooms: Number,
     bathrooms: Number,
     price: Number,
-    picturePath: String,
+    picturePath: [String],
     community: {
         type: Schema.Types.ObjectId,
         ref: "Community"

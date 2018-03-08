@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import { DropDownMenu, MenuItem } from 'material-ui/DropDownMenu';
 import Slider from 'material-ui/Slider';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import axios from 'axios';
 import ZipCodes from '../../utils/zipcodes';
 import Keys from '../../utils/keys';
+import API from '../../utils/API';
 import './AddListingForm.css';
 
 
@@ -18,11 +20,12 @@ class AddListingForm extends Component {
         super(props);
         this.state = {
             //replace userId with stored cookie value
-            sellerId: '5a8f3ab48896fd45f054117d',
+            sellerId: '5a887baf65e859b4acd2f60c',
             zipcode: 64111,
             bedrooms: 2,
             bathrooms: 2,
-            imgUploadUrls: []
+            imgUploadUrls: [],
+            isFormComplete: false,
         }
 
     }
@@ -50,56 +53,84 @@ class AddListingForm extends Component {
         });
     }
 
+    handleSubmit = event => {
+        event.preventDefault();
+        //create listing object
+        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address},+${this.state.city},+MO&key=${Keys.googleMaps}`)
+        .then(response => {
+            this.setState({
+                latitude: response.data.results[0].geometry.location.lat,
+                longitude: response.data.results[0].geometry.location.lng
+            })
+            let listing = {
+                address: this.state.address,
+                city: this.state.city,
+                zipcode: this.state.zipcode,
+                latitude: this.state.latitude,
+                longitude: this.state.longitude,
+                bedrooms: this.state.bedrooms,
+                bathrooms: this.state.bathrooms,
+                price: this.state.price,
+                picturePath: this.state.imgUploadUrls,
+                sellerId:this.state.sellerId
+            }
 
-handleDrop = files => {
-    // Push all the axios request promise into a single array
-    const uploaders = files.map(file => {
-      // Initial FormData
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("tags", this.state.sellerId);
-      formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET); // Replace the preset name with your own
-      formData.append("api_key", Keys.cloudinary); // Replace API key with your own Cloudinary key
-      formData.append("timestamp", (Date.now() / 1000) | 0);
-      
-      // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
-      return axios.post(CLOUDINARY_UPLOAD_URL, formData, {
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-      }).then(response => {
-        const data = response.data;
-        const fileURL = data.secure_url // You should store this URL for future references in your app
-        console.log(fileURL);
-        this.setState(state => {
-            state.imgUploadUrls.push(fileURL);
-            return {imgUploadUrls: state.imgUploadUrls}
-        })
+            API.createListing(listing)
+            .then(response => console.log(response));
+
+        }).catch(err => console.log(err));
         
-        console.log(data);
-      })
-    });
-  
-    // Once all the files are uploaded 
-    axios.all(uploaders).then(() => {
-      // ... perform after upload is successful operation
-      alert('Successful Upload');
-    });
-  }
+    }
+
+
+    handleDrop = files => {
+        // Push all the axios request promise into a single array
+        const uploaders = files.map(file => {
+            // Initial FormData
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("tags", this.state.sellerId);
+            formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET); // Replace the preset name with your own
+            formData.append("api_key", Keys.cloudinary); // Replace API key with your own Cloudinary key
+            formData.append("timestamp", (Date.now() / 1000) | 0);
+
+            // Make an AJAX upload request using Axios
+            return axios.post(CLOUDINARY_UPLOAD_URL, formData, {
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+            }).then(response => {
+                const data = response.data;
+                const fileURL = data.secure_url
+                console.log(fileURL);
+                this.setState(state => {
+                    state.imgUploadUrls.push(fileURL);
+                    return { imgUploadUrls: state.imgUploadUrls }
+                })
+
+                console.log(data);
+            })
+        });
+
+        // Once all the files are uploaded 
+        axios.all(uploaders).then(() => {
+            this.setState({ isFormComplete: true });
+            // ... perform after upload is successful operation
+            alert('Successful Upload');
+        });
+    }
 
     render() {
         const dropzoneStyles = {
-            width: '300px',
+            width: '50%',
             border: "1px solid black",
-            margin: "15px auto"
+            margin: "15px 0px",
+            padding: '5px'
         }
+
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <h1>Add Listing</h1>
-                <div>
-                    <TextField floatingLabelText="Address" />
-                </div>
-                <div>
-                    <TextField floatingLabelText="City" />
-                </div>
+                <TextField name="address" onChange={this.handleChange} floatingLabelText="Address" />
+                <TextField name="city" onChange={this.handleChange} floatingLabelText="City" />
                 <h3>What's the Zipcode?</h3>
                 <DropDownMenu value={this.state.zipcode} maxHeight={200} onChange={this.handleZipChange} name="zip" >
                     {
@@ -118,7 +149,7 @@ handleDrop = files => {
                 <Slider name="bathSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBathroomSliderChange} />
 
                 <h3>What's The Price?</h3>
-                <RadioButtonGroup name="budget" onChange={this.handleChange}>
+                <RadioButtonGroup name="price" onChange={this.handleChange}>
                     <RadioButton value={30000} label="< 50,000" />
                     <RadioButton value={75000} label="50,000 - 99,000" />
                     <RadioButton value={125000} label="100,000 - 149,999" />
@@ -142,10 +173,14 @@ handleDrop = files => {
                 <div className="container">
                     {this.state.imgUploadUrls.map(url => {
                         return (
-                            <img className='imgPreview' alt="" src={url} key={url}/>
+                            <img className='imgPreview' alt="" src={url} key={url} />
                         )
                     })}
                 </div>
+
+                {this.state.isFormComplete ? (
+                    <RaisedButton label='Submit' type='submit' />
+                ) : null}
 
             </form>
         );

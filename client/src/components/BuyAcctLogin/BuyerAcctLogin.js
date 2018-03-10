@@ -1,17 +1,8 @@
 import React from 'react';
 import FacebookLoginButton from 'react-social-login-buttons/lib/buttons/FacebookLoginButton';
 import GoogleLoginButton from 'react-social-login-buttons/lib/buttons/GoogleLoginButton';
-import GoogleLogin from 'react-google-login';
 import axios from 'axios';
 import "./BuyerAcctLogin.css"
-
-const styles = {
-    display: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignText: 'center'
-    }
-};
 
 const responseGoogle = () => {
     axios.get('/auth/google');

@@ -11,7 +11,7 @@ const SellerDashboard = props => {
       <div className="header"><Header /></div>
       <div className="dashboard-main">
         <div><MyListingsTable /></div>
-        <div><AddListingForm /></div>
+        <div className="add-listing-form"><AddListingForm /></div>
       </div>
       <div><Footer /></div>
     </div>

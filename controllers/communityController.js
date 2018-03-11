@@ -20,7 +20,7 @@ module.exports = {
         crimesCount: req.body.crimesCount,
         parksCount: req.body.parksCount,
         groceryStoresCount: req.body.groceryStoresCount,
-        bestSchoolRating: req.body.bestSchoolRating
+        schoolsCount: req.body.schoolsCount
     }
     console.log(req.body);
     db.Community

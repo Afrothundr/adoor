@@ -5,10 +5,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { DropDownMenu, MenuItem } from 'material-ui/DropDownMenu';
 import Slider from 'material-ui/Slider';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import Snackbar from 'material-ui/Snackbar';
 import axios from 'axios';
 import ZipCodes from '../../utils/zipcodes';
 import Keys from '../../utils/keys';
 import API from '../../utils/API';
+import { createCommunityFactors } from '../../utils/CommunityAlgorithm';
+
 import './AddListingForm.css';
 import './sellerStyles.css';
 
@@ -27,6 +30,7 @@ class AddListingForm extends Component {
             bathrooms: 2,
             imgUploadUrls: [],
             isFormComplete: false,
+            open: false
         }
 
     }
@@ -58,29 +62,34 @@ class AddListingForm extends Component {
         event.preventDefault();
         //create listing object
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address},+${this.state.city},+MO&key=${Keys.googleMaps}`)
-        .then(response => {
-            this.setState({
-                latitude: response.data.results[0].geometry.location.lat,
-                longitude: response.data.results[0].geometry.location.lng
-            })
-            let listing = {
-                address: this.state.address,
-                city: this.state.city,
-                zipcode: this.state.zipcode,
-                latitude: this.state.latitude,
-                longitude: this.state.longitude,
-                bedrooms: this.state.bedrooms,
-                bathrooms: this.state.bathrooms,
-                price: this.state.price,
-                picturePath: this.state.imgUploadUrls,
-                sellerId:this.state.sellerId
-            }
+            .then(response => {
+                this.setState({
+                    latitude: response.data.results[0].geometry.location.lat,
+                    longitude: response.data.results[0].geometry.location.lng
+                })
+                let listing = {
+                    address: this.state.address,
+                    city: this.state.city,
+                    zipcode: this.state.zipcode,
+                    latitude: this.state.latitude,
+                    longitude: this.state.longitude,
+                    bedrooms: this.state.bedrooms,
+                    bathrooms: this.state.bathrooms,
+                    price: this.state.price,
+                    picturePath: this.state.imgUploadUrls,
+                    sellerId: this.state.sellerId,
+                    listingId: null
+                }
+                
+                API.createListing(listing)
+                    .then(response => {
+                        listing.listingId = response.data.listings[response.data.listings.length - 1];
+                        console.log(listing);
+                        createCommunityFactors(listing);
+                    });
 
-            API.createListing(listing)
-            .then(response => console.log(response));
+            }).catch(err => console.log(err));
 
-        }).catch(err => console.log(err));
-        
     }
 
 
@@ -113,13 +122,46 @@ class AddListingForm extends Component {
 
         // Once all the files are uploaded 
         axios.all(uploaders).then(() => {
-            this.setState({ isFormComplete: true });
-            // ... perform after upload is successful operation
-            alert('Successful Upload');
+            this.setState({ 
+                isFormComplete: true,
+                open: true 
+            });
+
         });
     }
 
+    handleRequestClose = () => {
+        this.setState({
+          open: false,
+        });
+      };
+
     render() {
+
+let listing = {
+    "_id": {
+        "$oid": "5aa039a4d2f90f490094c310"
+    },
+    "address": "1703 NE 85th Ter",
+    "city": "Kansas City",
+    "zipcode": "64155",
+    "latitude": 39.24888199999999,
+    "longitude": -94.55778099999999,
+    "bedrooms": 3,
+    "bathrooms": 3,
+    "price": 175000,
+    "picturePath": [
+        "https://res.cloudinary.com/dgha5r7ax/image/upload/v1520449933/w8jqqlndbswqgfjtjoab.jpg",
+        "https://res.cloudinary.com/dgha5r7ax/image/upload/v1520449937/xszw0fo5due9qszcj29q.jpg",
+        "https://res.cloudinary.com/dgha5r7ax/image/upload/v1520449937/hil3rxlsdso9nxvpfpeq.jpg",
+        "https://res.cloudinary.com/dgha5r7ax/image/upload/v1520449938/hls8ugxlkjnmdp9ahjlm.jpg"
+    ],
+    "__v": 0
+
+}
+
+
+
         const dropzoneStyles = {
             width: '50%',
             border: "1px solid black",
@@ -182,6 +224,14 @@ class AddListingForm extends Component {
                 {this.state.isFormComplete ? (
                     <RaisedButton label='Submit' type='submit' />
                 ) : null}
+
+                <Snackbar
+                    open={this.state.open}
+                    bodyStyle={{backgroundColor: '#C9283E'}}
+                    message="Successful Upload"
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose}
+                />
 
             </form>
         );

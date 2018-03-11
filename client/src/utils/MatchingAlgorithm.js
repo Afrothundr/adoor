@@ -4,17 +4,17 @@ export function checkForCommunityMatch(user, listing) {
 
     if (
         user.preferences.caresAboutSchools === true &&
-        listing.community.bestSchoolRating > 8) {
+        listing.community.schoolsCount > 15) {
         console.log("you like good schools");
         communityScore++;
     } if (
         user.preferences.caresAboutGroceryStores === true &&
-        listing.community.groceryStoresCount > 0) {
+        listing.community.groceryStoresCount > 1) {
         console.log("you like close grocery stores");
         communityScore++;
     } if (
         user.preferences.caresAboutParks === true &&
-        listing.community.parksCount > 0) {
+        listing.community.parksCount > 2) {
         console.log("you like parks nearby");
         communityScore++;
     } if (
@@ -24,7 +24,7 @@ export function checkForCommunityMatch(user, listing) {
         communityScore++;
     } if (
         user.preferences.caresAboutHospitals === true &&
-        listing.community.hospitalsCount > 0) {
+        listing.community.hospitalsCount > 2) {
         console.log("you care about accessible healthcare");
         communityScore++;
     }

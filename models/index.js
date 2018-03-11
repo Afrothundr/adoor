@@ -4,6 +4,7 @@ module.exports = {
     Match: require("./Match"),
     Listing: require("./Listing"),
     Community: require("./Community"),
-    Seller: require("./Seller")
+    Seller: require("./Seller"),
+    Crime: require("./CrimeData")
   };
   

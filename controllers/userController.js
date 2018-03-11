@@ -29,7 +29,7 @@ module.exports = {
     console.log(req.body);
     db.User
       .create(newUser)
-      .then(dbModel => res.json({"message": "record Added"}))
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

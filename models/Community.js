@@ -8,7 +8,7 @@ var communitySchema = new Schema({
     crimesCount: Number,
     parksCount: Number,
     groceryStoresCount: Number,
-    bestSchoolRating: Number
+    schoolsCount: Number
 });
 
 // This creates our model from the above schema, using mongoose's model method

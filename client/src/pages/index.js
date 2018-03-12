@@ -4,7 +4,7 @@ import './gridStyles.css';
 
 const Home = props => {
   return (
-    <div className="home-page">
+    <div className="home-page transition-item page">
         <HomePage />
     </div>
   );

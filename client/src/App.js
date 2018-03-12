@@ -8,6 +8,7 @@ import BuyerLogin from './pages/buyerLogin';
 import SellerAcctLogin from './pages/sellerLogin';
 import Matching from './pages/matching';
 import Home from './pages/index';
+import MyMatches from '../src/components/myMatches/myMatches'
 
 
 const App = props => {
@@ -26,6 +27,7 @@ const App = props => {
             <Route exact path="/profile/login" component={BuyerLogin}></Route>
             <Route exact path="/profile/create" component={BuyerProfileCreate}></Route>
             <Route exact path="/seller/login" component={SellerAcctLogin}></Route>
+            <Route exact path="/mymatches" component={MyMatches}></Route>
           </Switch>
         </CSSTransition>
       </TransitionGroup>

@@ -26,7 +26,7 @@ class MyMatches extends Component {
         API.getUser(this.state.userId)
             .then((user) => {
                 this.getListings(user.data.matches.history)
-                // console.log(user.data.matches.history);
+                console.log(user.data.matches.history);
             }).catch(err => console.log(err));
     }
 
@@ -64,7 +64,7 @@ class MyMatches extends Component {
                         </TableRow>
                     </TableHeader>
                     <TableBody displayRowCheckbox={false}>
-                        {this.state.listings.map(listing => {
+                        {/* {this.state.listings.map(listing => {
                             return (
                                 <TableRow>
                                     <TableRowColumn className="list-items">{listing.address}</TableRowColumn>
@@ -75,7 +75,7 @@ class MyMatches extends Component {
                                     <TableRowColumn className="list-items">{listing.bathrooms}</TableRowColumn>
                                 </TableRow>
                             )
-                        })
+                        }) */}
                         }
                     </TableBody>
                 </Table>

@@ -2,7 +2,7 @@
   "name": "adoor",
   "version": "0.1.0",
   "private": true,
-  "proxy":"http://localhost:3001",
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "cloudinary": "^1.10.0",
     "cloudinary-react": "^1.0.6",

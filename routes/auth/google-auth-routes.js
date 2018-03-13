@@ -1,8 +1,11 @@
-
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const cors = require('cors');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const googleStrategy = require('../../config/strategies/google.strategy');
+
 
 const whitelist = ['https://accounts.google.com/', 'http://accounts.google.com/', "http:localhost:3000"]
 var corsOptions = {
@@ -21,16 +24,16 @@ router.route('/callback')
 		failureRedirect: '/error'}), function(req, res){
 			res.redirect('/');
 		}, cors(corsOptions));
-// app.get('/auth/google/callback', passport.authenticate('google'));
 
 router.route('/')
 	.get(passport.authenticate('google',{
 		scope:['https://www.googleapis.com/auth/userinfo.profile',
 			'https://www.googleapis.com/auth/userinfo.email']
 	
-}), cors());
+}));
 
-router.route('/api/logout', (req, res) => {
+router.route('/api/logout')
+	.post(function (req, res) {
 	req.logout();
 	res.send(req.user);
 });
@@ -42,6 +45,34 @@ router.route('/api/current_user', (req, res) => {
 	console.log(req.user);
 });
 
-
+router.route('/user')
+	.post( function (req, res) {
+		console.log(req.body.profileObj.googleId);
+		User.findOne({ googleId: req.body.profileObj.googleId })
+			.then((existingUser) => {
+				if (existingUser) {
+					console.log("User already exists");
+					res.json(existingUser);
+				} else {
+						//we want to create a new user
+						//User model instance
+						const newUser = new User({
+							googleId: req.body.profileObj.googleId,
+							firstName: req.body.profileObj.givenName,
+							lastName: req.body.profileObj.familyName,
+							email: req.body.profileObj.email
+						})
+						.save(function (err) {
+							if (err) return handleError(err);
+							// saved!
+							console.log("user saved!")
+						})
+						.then(() =>{
+							console.log("user saved!");
+							res.json(newUser);
+						});
+					}
+			});
+});
 
 module.exports = router;

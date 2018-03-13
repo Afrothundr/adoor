@@ -16,7 +16,7 @@ module.exports = function(app){
 	// 	done(null, user);
 	// });
 
-	require('./strategies/google.strategy')();
-	require('./strategies/facebook.strategy')();
+	//require('./strategies/google.strategy')();
+	//require('./strategies/facebook.strategy')();
 
 };

@@ -21,6 +21,7 @@ module.exports = {
   create: function(req, res) {
     let newUser = {
       googleId: req.body.googleId,
+      facebookId: req.body.facebookId,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
@@ -29,7 +30,7 @@ module.exports = {
     console.log(req.body);
     db.User
       .create(newUser)
-      .then(dbModel => res.json({"message": "record Added"}))
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {

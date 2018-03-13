@@ -11,6 +11,7 @@ import ZipCodes from '../../utils/zipcodes';
 import Keys from '../../utils/keys';
 import API from '../../utils/API';
 import { createCommunityFactors } from '../../utils/CommunityAlgorithm';
+import Dialog from 'material-ui/Dialog';
 
 import './AddListingForm.css';
 import './sellerStyles.css';
@@ -32,7 +33,8 @@ class AddListingForm extends Component {
             bathrooms: 2,
             imgUploadUrls: [],
             isFormComplete: false,
-            open: false
+            open: false,
+            modalOpen: false,
         }
 
     }
@@ -82,12 +84,13 @@ class AddListingForm extends Component {
                     sellerId: this.state.sellerId,
                     listingId: null
                 }
-                
+
                 API.createListing(listing)
                     .then(response => {
                         listing.listingId = response.data.listings[response.data.listings.length - 1];
                         console.log(listing);
                         createCommunityFactors(listing);
+                        this.setState({modalOpen: true});
                     });
 
             }).catch(err => console.log(err));
@@ -124,9 +127,9 @@ class AddListingForm extends Component {
 
         // Once all the files are uploaded 
         axios.all(uploaders).then(() => {
-            this.setState({ 
+            this.setState({
                 isFormComplete: true,
-                open: true 
+                open: true
             });
 
         });
@@ -134,42 +137,38 @@ class AddListingForm extends Component {
 
     handleRequestClose = () => {
         this.setState({
-          open: false,
+            open: false,
         });
+    };
+
+    handleOpen = () => {
+        this.setState({modalOpen: true});
       };
+    
+    handleClose = () => {
+        this.setState({modalOpen: false});
+      };
+    handleModalClose = () => {
+        this.setState({modalOpen: false})
+        window.location.reload();
+    }  
+    
 
     render() {
-
-let listing = {
-    "_id": {
-        "$oid": "5aa039a4d2f90f490094c310"
-    },
-    "address": "1703 NE 85th Ter",
-    "city": "Kansas City",
-    "zipcode": "64155",
-    "latitude": 39.24888199999999,
-    "longitude": -94.55778099999999,
-    "bedrooms": 3,
-    "bathrooms": 3,
-    "price": 175000,
-    "picturePath": [
-        "https://res.cloudinary.com/dgha5r7ax/image/upload/v1520449933/w8jqqlndbswqgfjtjoab.jpg",
-        "https://res.cloudinary.com/dgha5r7ax/image/upload/v1520449937/xszw0fo5due9qszcj29q.jpg",
-        "https://res.cloudinary.com/dgha5r7ax/image/upload/v1520449937/hil3rxlsdso9nxvpfpeq.jpg",
-        "https://res.cloudinary.com/dgha5r7ax/image/upload/v1520449938/hls8ugxlkjnmdp9ahjlm.jpg"
-    ],
-    "__v": 0
-
-}
-
-
-
         const dropzoneStyles = {
             width: '50%',
             border: "1px solid black",
             margin: "15px 0px",
             padding: '5px'
         }
+
+        const actions = [
+            <RaisedButton
+              label="Perfect!"
+              primary={true}
+              onClick={this.handleModalClose}
+            />,
+          ];
 
         return (
             <form onSubmit={this.handleSubmit}>
@@ -229,11 +228,21 @@ let listing = {
 
                 <Snackbar
                     open={this.state.open}
-                    bodyStyle={{backgroundColor: '#C9283E'}}
+                    bodyStyle={{ backgroundColor: '#C9283E' }}
                     message="Successful Upload"
                     autoHideDuration={4000}
                     onRequestClose={this.handleRequestClose}
                 />
+
+                <Dialog
+                    title="Listing Added!"
+                    actions={actions}
+                    modal={false}
+                    open={this.state.modalOpen}
+                    onRequestClose={this.handleClose}
+                >
+                    Your listing has been saved!
+                </Dialog>
 
             </form>
         );

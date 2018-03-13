@@ -12,6 +12,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.0.0",
     "react-dropzone": "^4.2.8",
+    "react-facebook-login": "^4.0.1",
     "react-google-login": "^3.0.4",
     "react-lazy-load": "^3.0.13",
     "react-lazyload": "^2.3.0",

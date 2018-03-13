@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from '../../utils/API';
 import ZipCodes from '../../utils/zipcodes'
+import { Route, Redirect } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { DropDownMenu, MenuItem } from 'material-ui/DropDownMenu';
@@ -11,14 +12,16 @@ class UserPrefQuiz extends Component {
     constructor() {
         super();
         //intial state
+        var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");;
         this.state = {
             //replace userId with stored cookie value
-            userId: '5a8f3ab48896fd45f054117d',
+            userId: cookieValue,
             zipcode: 64111,
             bedrooms: 2,
             bathrooms: 2,
             formOne: 'inline-block',
-            formTwo: 'none'
+            formTwo: 'none',
+            preferencesCreated: false
         }
     }
 
@@ -39,6 +42,10 @@ class UserPrefQuiz extends Component {
         API.createPref(userPref)
             .then((preferences) => {
                 console.log(preferences.data);
+                this.setState({
+                    preferencesCreated: true
+                })
+
             }).catch(err => console.log(err));
     }
     handleChange = event => {
@@ -171,9 +178,14 @@ class UserPrefQuiz extends Component {
                         <RaisedButton className="submit-button" primary={true} label="Submit" type="submit" />
                     </div>
                 </div>
+                <div>
+                    {this.state.preferencesCreated && (
+                        <Redirect to={"/matching"} />
+                    )}
+                </div>
             </form>
         );
-    }
+}
 }
 
 //export User Pref Quiz

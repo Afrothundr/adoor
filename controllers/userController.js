@@ -21,6 +21,7 @@ module.exports = {
   create: function(req, res) {
     let newUser = {
       googleId: req.body.googleId,
+      facebookId: req.body.facebookId,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,

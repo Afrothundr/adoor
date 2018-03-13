@@ -1,0 +1,24 @@
+.component-wrapper{
+    align-items: center;
+    padding-top: 25%;
+    
+}
+
+.signUp{
+    margin: auto;
+    width: 50%;
+    text-align: left;
+    font-size: 80px;
+}
+
+.buttons{
+    margin-top: 15px;
+    margin: auto;
+    width: 200px;
+    text-align: center;
+}
+
+hr{
+    width: 50%;
+    margin-bottom: 50px;
+}

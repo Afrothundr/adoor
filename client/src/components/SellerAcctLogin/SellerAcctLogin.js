@@ -1,7 +1,7 @@
 import React from 'react';
 import FacebookLoginButton from 'react-social-login-buttons/lib/buttons/FacebookLoginButton';
 import GoogleLoginButton from 'react-social-login-buttons/lib/buttons/GoogleLoginButton';
-import '../../pages/gridStyles.css'
+import "./SellerAcctLogin.css";
 import axios from 'axios';
 
 const responseGoogle = () => {
@@ -12,7 +12,8 @@ const responseGoogle = () => {
   const SellSignUp = () => (
     <div className='component-wrapper'>
         <div>
-            <h1 className='signUp'>Sign Up</h1>
+            <h1 className='signUp'>Account Login</h1>
+            <hr/>
         </div>
         <div className='buttons'>
             <FacebookLoginButton onClick={() => alert('Hello')} />

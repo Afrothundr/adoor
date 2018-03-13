@@ -13,39 +13,28 @@ class MyListings extends Component {
     constructor() {
         super();
         this.state = {
-            //replace userId with stored cookie value
-            userId: '5a88545591e285977de483da',
+            //replace sellerId with stored cookie value
+            sellerId: '5a887baf65e859b4acd2f60c',
             listings: []
         }
     }
 
     //functions
-    // Get matched listing IDs from User API
-    getMatches = () => {
-        API.getUser(this.state.userId)
-            .then((user) => {
-                this.getListings(user.data.matches.history)
-                // console.log(user.data.matches.history);
-            }).catch(err => console.log(err));
-    }
-
     // Get listing info from listing API
-    getListings = (matches) => {
-        matches.forEach(match => {
-            API.getListing(match)
-                .then((listing) => {
-                    this.setState((state) => {
-                        console.log(listing.data);
-                        state.listings.push(listing.data);
-                        return { userId: state.userId, listings: state.listings };
-                    });
+    getListings = (seller) => {
+            API.getSeller(seller)
+                .then((seller) => {
+                    seller.data.listings.forEach(listing => {
+                        this.setState(state => {
+                            this.state.listings.push(listing);
+                            return { sellerId: state.sellerId, listings: state.listings };
+                        })
+                    }) 
                 }).catch(err => console.log(err))
-        })
-
     }
 
     componentWillMount = () => {
-        this.getMatches('5a88545591e285977de483da')
+        this.getListings(this.state.sellerId)
     }
     // JSX Render
     render() {
@@ -67,7 +56,7 @@ class MyListings extends Component {
                     <TableBody displayRowCheckbox={false}>
                         {this.state.listings.map(listing => {
                             return (
-                                <TableRow>
+                                <TableRow key={listing._id}>
                                     <TableRowColumn className="list-items">{listing.address}</TableRowColumn>
                                     <TableRowColumn className="list-items">{listing.city}</TableRowColumn>
                                     <TableRowColumn className="list-items">{listing.zipcode}</TableRowColumn>

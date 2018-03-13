@@ -12,7 +12,8 @@ const responseGoogle = () => {
 const BuySignUp = () => (
     <div className='component-wrapper'>
         <div>
-            <h1 className='signUp'>Sign Up</h1>
+            <h1 className='signUp'>Account Login</h1>
+            <hr/>
         </div>
         <div className='buttons'>
             <FacebookLoginButton onClick={() => alert('Hello')} />

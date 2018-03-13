@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from 'react-dom';
+
 import "./myMatches.css";
 import API from '../../utils/API';
 import {
@@ -27,7 +27,7 @@ class MyMatches extends Component {
         API.getUser(this.state.userId)
             .then((user) => {
                 this.getListings(user.data.matches.history)
-                // console.log(user.data.matches.history);
+                console.log(user.data.matches.history);
             }).catch(err => console.log(err));
     }
 
@@ -36,23 +36,25 @@ class MyMatches extends Component {
         matches.forEach(match => {
             API.getListing(match)
                 .then((listing) => {
+                    if (listing.data !== null) {
+                    console.log(listing);
                     this.setState((state) => {
-                        console.log(listing.data);
                         state.listings.push(listing.data);
                         return { userId: state.userId, listings: state.listings };
                     });
+                }
                 }).catch(err => console.log(err))
         })
 
     }
 
     componentWillMount = () => {
-        this.getMatches('5a88545591e285977de483da')
+        this.getMatches(this.state.userId)
     }
     // JSX Render
     render() {
         return (
-            <div className="test">
+            <div ref="matchingTable">
                         <Table >
                         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                           <TableRow >

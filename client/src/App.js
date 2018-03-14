@@ -8,6 +8,7 @@ import BuyerLogin from './pages/buyerLogin';
 import SellerAcctLogin from './pages/sellerLogin';
 import Matching from './pages/matching';
 import Home from './pages/index';
+import SellerBuyerLogout from './components/SellerBuyerLogout/SellerBuyerLogout';
 import MyMatches from './components/myMatches/myMatches';
 
 
@@ -18,6 +19,7 @@ const App = props => {
           render={({ location }) => (
             <PageTransition timeout={250}>
               <Switch location={ location }>
+                <Route exact path="/logout" component={SellerBuyerLogout}></Route>
                 <Route exact path="/" component={Home}></Route>
                 <Route exact path="/matching" component={Matching}></Route>
                 <Route exact path="/seller/dashboard" component={SellerDashboard}></Route>

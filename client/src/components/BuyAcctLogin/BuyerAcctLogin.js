@@ -20,8 +20,7 @@ class BuySignUp extends React.Component{
         super(props);
         this.state = {
             isLoggedIn: null,
-            firstTimeUser: null,
-            redirectTo: null
+            firstTimeUser: null
         };
     }
 
@@ -29,21 +28,22 @@ class BuySignUp extends React.Component{
         axios.post('/auth/google/user', response)
         .then(res => {
             console.log(res.data);
-           // localStorage.setItem('userId', res.data._id);
             document.cookie = `userId=${res.data._id}`;
+            console.log(document.cookie);
             if(res.data.preferences){
-                console.log("New user in promise");
+                console.log("Not a new user google in promise");
                 this.setState({
                     firstTimeUser: false,
                     isLoggedIn: true
                 })
             }else{
-                console.log("In axios post promise");
+                console.log("New user in google axios promise");
                 this.setState({
                     firstTimeUser: true,
                     isLoggedIn: true,                    
                 })
             }
+            console.log("first time user? " + this.state.firstTimeUser);
         })
         .catch(function (error) {
             console.log(error);
@@ -54,15 +54,22 @@ class BuySignUp extends React.Component{
         axios.post('/auth/facebook/user', response)
         .then(res => {
             console.log(res.data);
-            //localStorage.setItem('userId', res.data._id);
             document.cookie = `userId=${res.data._id}`;
+            console.log(document.cookie);
             if(res.data.preferences){
-                console.log("New user in promise");
+                console.log("Not a new user in axios facebook promise");
+                this.setState({
+                    firstTimeUser: false,
+                    isLoggedIn: true
+                })
+            }else{
+                console.log("New user in axios facebook promise");
+                this.setState({
+                    firstTimeUser: true,
+                    isLoggedIn: true,                    
+                })
             }
-            console.log("In axios post promise");
-            this.setState({
-                isLoggedIn: true
-            })
+            console.log("first time user? " + this.state.firstTimeUser);
         })
         .catch(function (error) {
             console.log(error);
@@ -75,10 +82,10 @@ class BuySignUp extends React.Component{
 
 
     render(){
-        if(this.firstTimeUser == false){
+        if(this.state.firstTimeUser === false){
             return <Redirect to={"/matching"} />;
         }
-        else{
+        else if(this.state.firstTimeUser === true){
             return <Redirect to={"/profile/create"} />;
         }
         return(        

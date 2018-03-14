@@ -172,7 +172,6 @@ class UserPrefQuiz extends Component {
                     <div>
                         <RaisedButton className="submit-button" primary={true} label="Submit" type="submit" />
                     </div>
-                </div>
 
                 <div>
                     {this.state.preferencesCreated && (

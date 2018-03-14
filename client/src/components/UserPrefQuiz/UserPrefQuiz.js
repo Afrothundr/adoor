@@ -11,7 +11,6 @@ import "./UserPrefQuiz.css";
 class UserPrefQuiz extends Component {
     constructor() {
         super();
-        //intial state
         var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");;
         this.state = {
             //replace userId with stored cookie value

@@ -16,6 +16,8 @@
     text-align: center;
     display:grid;
     grid-template-rows: 1fr 1fr;
+    font-family: 'wire one', sans-serif;
+    font-size: 20px;
 }
 
 .logo-img{
@@ -26,4 +28,6 @@
 .buttonOne{
     margin-top: 50px;
     margin-bottom: 10px;
+    font-family: 'wire one', sans-serif;
+    font-size: 20px;
 }

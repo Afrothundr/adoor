@@ -90,7 +90,7 @@ class UserPrefQuiz extends Component {
         //input form
         return (
             <form className="wrapper-form" onSubmit={this.handleSubmit}>
-                <h1>Just a few questions...</h1>
+                <h1>Just a few questions. . .</h1>
                 <h3>Do You Have Kids?</h3>
                 <RadioButtonGroup name="kids" onChange={this.handleChange}>
                     <RadioButton value={true} label="Yes" style={{ display: 'inline-block', width: 'auto', margin: "0px 5px" }} />

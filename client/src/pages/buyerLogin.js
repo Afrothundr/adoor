@@ -8,6 +8,7 @@ import './gridStyles.css';
 const BuyerLogin = props => {
   return (
     // wrapper main splits the screen up in two columns
+  
     <div className="wrapper-main transition-item page">
       <div className="content-wrapper">
         <div className="header">

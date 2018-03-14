@@ -9,3 +9,8 @@ h1{
 .next-button{
     margin-top: 50px;
 }
+
+.wrapper-form{
+    width: 50%;
+    margin: auto;
+}

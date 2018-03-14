@@ -25,10 +25,12 @@ class MyListings extends Component {
             API.getSeller(seller)
                 .then((seller) => {
                     seller.data.listings.forEach(listing => {
-                        this.setState(state => {
-                            this.state.listings.push(listing);
-                            return { sellerId: state.sellerId, listings: state.listings };
-                        })
+                        if (listing !== null) {
+                            this.setState(state => {
+                                this.state.listings.push(listing);
+                                return { sellerId: state.sellerId, listings: state.listings };
+                            })
+                        }
                     }) 
                 }).catch(err => console.log(err))
     }

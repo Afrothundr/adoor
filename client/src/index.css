@@ -3,21 +3,18 @@
   transform: translate3d(0, 0, 0);
 }
 .page.transition-appear {
-  opacity: 0;
-  transform: translate3d(100%, 0, 0);
+  opacity: 0.01;
 }
 
 .page.transition-appear.transition-appear-active {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transition: opacity 500ms ease-in;
 }
 .page.transition-leave {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
 }
 
 .page.transition-leave.transition-leave-active {
-  opacity: 0;
-  transform: translate3d(100%, 0, 0);
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
-

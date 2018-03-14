@@ -4,11 +4,15 @@
     
 }
 
+
+
 .signUp{
     margin: auto;
     width: 50%;
+    font-family: 'Raleway', sans-serif;
     text-align: left;
     font-size: 80px;
+
 }
 
 .buttons{

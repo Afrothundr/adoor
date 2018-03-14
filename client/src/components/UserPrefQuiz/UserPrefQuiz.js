@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from '../../utils/API';
 import ZipCodes from '../../utils/zipcodes'
-import { Route, Redirect } from 'react-router';
+import { Redirect } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { DropDownMenu, MenuItem } from 'material-ui/DropDownMenu';

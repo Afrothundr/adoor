@@ -17,7 +17,7 @@ const App = props => {
     <Router>
         <Route
           render={({ location }) => (
-            <PageTransition timeout={250}>
+            <PageTransition timeout={500}>
               <Switch location={ location }>
                 <Route exact path="/" component={Home}></Route>
                 <Route exact path="/matching" component={Matching}></Route>

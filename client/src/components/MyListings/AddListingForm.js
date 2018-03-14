@@ -73,6 +73,9 @@ class AddListingForm extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
+        if (!this.state.isFormComplete) {
+
+        } else {
         //create listing object
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address},+${this.state.city},+MO&key=${Keys.googleMaps}`)
             .then(response => {
@@ -103,7 +106,7 @@ class AddListingForm extends Component {
                     });
 
             }).catch(err => console.log(err));
-
+        }
     }
 
 

@@ -1,6 +1,6 @@
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
-import React, { Component } from "react";
+import React from "react";
 import './homePage.css';
 
 const HomePage = () => (

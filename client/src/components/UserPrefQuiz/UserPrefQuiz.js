@@ -1,26 +1,39 @@
 import React, { Component } from "react";
 import API from '../../utils/API';
 import ZipCodes from '../../utils/zipcodes'
+import { Route, Redirect } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { DropDownMenu, MenuItem } from 'material-ui/DropDownMenu';
 import Slider from 'material-ui/Slider';
 import "./UserPrefQuiz.css";
 
-
 class UserPrefQuiz extends Component {
     constructor() {
         super();
         //intial state
+        var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");;
         this.state = {
             //replace userId with stored cookie value
-            userId: '5a8f3ab48896fd45f054117d',
+            userId: cookieValue,
             zipcode: 64111,
             bedrooms: 2,
-            bathrooms: 2
+            bathrooms: 2,
+            formOne: 'inline-block',
+            formTwo: 'none',
+            preferencesCreated: false
         }
     }
+
+
     //functions
+    toFormTwo = event => {
+        this.setState({
+            formOne: 'none',
+            formTwo: 'inline-block'
+        });
+    }
+
     handleSubmit = event => {
         event.preventDefault();
         //create user prefs
@@ -29,6 +42,10 @@ class UserPrefQuiz extends Component {
         API.createPref(userPref)
             .then((preferences) => {
                 console.log(preferences.data);
+                this.setState({
+                    preferencesCreated: true
+                })
+
             }).catch(err => console.log(err));
     }
     handleChange = event => {
@@ -151,8 +168,16 @@ class UserPrefQuiz extends Component {
                         })
                     }
                 </DropDownMenu>
+
+                    <div>
+                        <RaisedButton className="submit-button" primary={true} label="Submit" type="submit" />
+                    </div>
+                </div>
+
                 <div>
-                    <RaisedButton primary={true} label="Submit" type="submit" />
+                    {this.state.preferencesCreated && (
+                        <Redirect to={"/matching"} />
+                    )}
                 </div>
             </form>
         );

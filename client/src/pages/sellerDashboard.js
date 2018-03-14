@@ -2,18 +2,22 @@ import React from "react";
 import MyListingsTable from '../components/MyListings/MyListingsTable';
 import AddListingForm from '../components/MyListings/AddListingForm';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
 import './gridStyles.css';
 
 const SellerDashboard = props => {
   return (
-    <div className="wrapper-seller-dashboard">
-      <div className="header"><Header /></div>
-      <div className="dashboard-main">
-        <div><MyListingsTable /></div>
-        <div><AddListingForm /></div>
+    <div className="seller-dashboard-wrapper">
+      <div className="header">
+      <Header />
       </div>
-      <div><Footer /></div>
+      <div className="wrapper-main">
+        <div className="content-main">
+          <MyListingsTable />
+        </div>
+        <div className="standard-sidebar">
+          <AddListingForm />
+        </div>
+      </div>
     </div>
   );
 }

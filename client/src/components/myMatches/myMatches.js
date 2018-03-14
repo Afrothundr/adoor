@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import "./myMatches.css";
 import API from '../../utils/API';
 import {
@@ -9,14 +8,14 @@ import {
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
-  } from 'material-ui/Table';
+} from 'material-ui/Table';
 
 class MyMatches extends Component {
     constructor() {
         super();
         this.state = {
             //replace userId with stored cookie value
-            userId: '5a88545591e285977de483da',
+            userId: '5a8df22e0beba811104ca437',
             listings: []
         }
     }
@@ -69,7 +68,7 @@ class MyMatches extends Component {
                         <TableBody displayRowCheckbox={false}>
                         {this.state.listings.map(listing => {
                     return (
-                          <TableRow>
+                          <TableRow key={listing._id}>
                             <TableRowColumn className="list-items">{listing.address}</TableRowColumn>
                             <TableRowColumn className="list-items">{listing.city}</TableRowColumn>
                             <TableRowColumn className="list-items">{listing.zipcode}</TableRowColumn>

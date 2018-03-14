@@ -5,7 +5,7 @@ import './gridStyles.css';
 
 const BuyerProfileCreate = props => {
   return (
-    <div className="wrapper-main">
+    <div className="wrapper-main page">
       <div className="content-main">
         <StandardSideBar />
       </div>

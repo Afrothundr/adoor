@@ -13,7 +13,6 @@ import API from '../../utils/API';
 import { createCommunityFactors } from '../../utils/CommunityAlgorithm';
 import Dialog from 'material-ui/Dialog';
 import './AddListingForm.css';
-import './sellerStyles.css';
 
 
 
@@ -183,9 +182,9 @@ class AddListingForm extends Component {
         ];
 
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="form-wrapper" onSubmit={this.handleSubmit}>
                 <div style={{ display: this.state.formOne }}>
-                    <h1>Add Listing</h1>
+                    <h1 className="header-tag">Add Listing</h1>
                     <hr />
                     <TextField name="address" onChange={this.handleChange} floatingLabelText="Address" />
                     <TextField name="city" onChange={this.handleChange} floatingLabelText="City" />

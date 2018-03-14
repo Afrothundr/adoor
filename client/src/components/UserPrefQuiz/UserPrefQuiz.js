@@ -31,8 +31,8 @@ class UserPrefQuiz extends Component {
         this.setState({
             formOne: 'none',
             formTwo: 'inline-block'
-    });
-      }
+        });
+    }
 
     handleSubmit = event => {
         event.preventDefault();
@@ -107,9 +107,9 @@ class UserPrefQuiz extends Component {
         //input form
         return (
             <form className="wrapper-form" onSubmit={this.handleSubmit}>
-                <div style={{display: this.state.formOne}}>
+                <div style={{ display: this.state.formOne }}>
                     <h1>Just a few questions...</h1>
-                    <hr/>
+                    <hr />
                     <h3>Do You Have Kids?</h3>
                     <RadioButtonGroup name="kids" onChange={this.handleChange}>
                         <RadioButton value={true} label="Yes" style={{ display: 'inline-block', width: 'auto', margin: "0px 5px" }} />
@@ -141,7 +141,7 @@ class UserPrefQuiz extends Component {
                         <RaisedButton className="next-button" onClick={this.toFormTwo} id="next-button" primary={true} label="Next" type="Next" />
                     </div>
                 </div>
-                <div style={{display: this.state.formTwo}}>
+                <div style={{ display: this.state.formTwo }}>
                     <h3>How Many Bedrooms?</h3>
                     <p>{this.state.bedrooms}</p>
                     <Slider name="bedroomSlider" defaultValue={2} min={1} max={7} step={1} onChange={this.handleBedroomSliderChange} />
@@ -185,7 +185,7 @@ class UserPrefQuiz extends Component {
                 </div>
             </form>
         );
-}
+    }
 }
 
 //export User Pref Quiz

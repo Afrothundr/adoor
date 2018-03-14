@@ -1,16 +1,22 @@
 import React from "react";
 import MatchingContainer from '../components/Matching/MatchingContainer';
 import MyMatches from '../components/myMatches/myMatches';
+import MatchingButton from '../components/MatchingButton/MatchingButton';
 import './gridStyles.css';
 
 const Matching = props => {
   return (
-    <div>
-      <div>
-        <MatchingContainer />
+    <div className="matching-dashboard-wrapper">
+      <div className="my-matches-button">
+      <MatchingButton />
       </div>
       <div>
-        <MyMatches />
+        <div className="matching-main">
+          <MatchingContainer />
+        </div>
+        <div>
+          <MyMatches />
+        </div>
       </div>
     </div>
   );

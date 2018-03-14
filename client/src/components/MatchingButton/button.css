@@ -1,0 +1,11 @@
+.button-component{
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    float: right;
+}
+
+.matching-button{
+    width: 50%;
+    margin: auto;
+}

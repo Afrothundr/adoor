@@ -29,3 +29,7 @@ img-slider-container {
     width: 50%;
     margin: 0 auto;
 }
+
+.listing-photo {
+    background: url('../../loading.gif') no-repeat;
+}

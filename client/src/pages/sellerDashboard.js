@@ -6,7 +6,7 @@ import './gridStyles.css';
 
 const SellerDashboard = props => {
   return (
-    <div className="seller-dashboard-wrapper">
+    <div className="seller-dashboard-wrapper page">
       <div className="header">
       <Header />
       </div>

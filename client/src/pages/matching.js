@@ -6,7 +6,7 @@ import './gridStyles.css';
 
 const Matching = props => {
   return (
-    <div className="matching-dashboard-wrapper">
+    <div className="matching-dashboard-wrapper page">
       <div className="my-matches-button">
       <MatchingButton />
       </div>

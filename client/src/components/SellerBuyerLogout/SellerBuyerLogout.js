@@ -35,17 +35,12 @@ class SellerBuyerLogout extends React.Component {
         }
        
         return (
-            <div className='component-wrapper'>
-                
-                <div className='buttons'>
-                    
+            <div>
+                <div className='logout'>
                     <GoogleLogout
                         buttonText="Logout"
-                        onLogoutSuccess={this.googleLogout.bind(this)}
-                    >
+                        onLogoutSuccess={this.googleLogout.bind(this)}>
                     </GoogleLogout>
-
-
                 </div>
             </div>
         )

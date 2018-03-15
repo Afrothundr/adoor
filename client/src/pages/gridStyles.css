@@ -1,5 +1,33 @@
 .wrapper-main{
     display: grid;
+
+    grid-template-columns: 2fr auto;
+
+}
+
+html{
+    height:100%
+}
+body{
+    min-height: 100%;
+}
+
+.logo{
+   width: 75px;
+   
+}
+
+.matching-dashboard-wrapper-page{
+    height: 100%;
+}
+
+.matching-main{
+    margin-top: 30px;
+}
+
+
+
+
     grid-template-columns: 2fr 1fr;
 }
 

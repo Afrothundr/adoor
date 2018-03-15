@@ -25,11 +25,12 @@ class MatchingContainer extends Component {
         }, () => {
             API.getUser(this.state.userId).then(user => {
                 this.setState({ user: user.data });
+            }).then(() => {
+                this.props.userMatches(this.state.user)
             }).catch(err => {
                 console.log(err);
             })
         }
-        
     )
 
     API.getListings().then(listings => {
@@ -37,7 +38,6 @@ class MatchingContainer extends Component {
                 this.state.listings.push(listing);
             })
     });
-
     }
 
     refreshUser() {

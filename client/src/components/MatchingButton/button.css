@@ -1,11 +1,20 @@
 .button-component{
-    width: 150px;
-    height: 150px;
+    width: 50px;
+    height: 50px;
     margin: auto;
     float: right;
+    opacity: .5;
 }
 
 .matching-button{
     width: 50%;
     margin: auto;
+}
+
+.container{
+    height: '100%';
+}
+
+.drawershit{
+    height: '100%';
 }

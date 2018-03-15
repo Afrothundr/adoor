@@ -20,7 +20,8 @@ class UserPrefQuiz extends Component {
             bathrooms: 2,
             formOne: 'inline-block',
             formTwo: 'none',
-            preferencesCreated: false
+            preferencesCreated: false,
+            isFormComplete: false
         }
     }
     //functions
@@ -32,16 +33,21 @@ class UserPrefQuiz extends Component {
     }
     handleSubmit = event => {
         event.preventDefault();
-        //create user prefs
-        let userPref = this.calculatePrefs();
-        //store preferences in database and update user object
-        API.createPref(userPref)
-            .then((preferences) => {
-                console.log(preferences.data);
-                this.setState({
-                    preferencesCreated: true
-                })
-            }).catch(err => console.log(err));
+        if (!this.state.isFormComplete) {
+
+        } else {
+            //create user prefs
+            let userPref = this.calculatePrefs();
+            //store preferences in database and update user object
+            API.createPref(userPref)
+                .then((preferences) => {
+                    console.log(preferences.data);
+                    this.setState({
+                        preferencesCreated: true
+                    })
+                }).catch(err => console.log(err));
+        }
+
     }
     handleChange = event => {
         const { name, value } = event.target;

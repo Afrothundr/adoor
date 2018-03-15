@@ -11,22 +11,33 @@ class MatchingContainer extends Component {
         //intial state
         this.state = {
             //replace userId with stored cookie value
-            userId: '5a8df22e0beba811104ca437',
+            userId: null,
             listings: [],
 
         }
         this.next = this.next.bind(this)
     }
     componentWillMount() {
-        API.getListings().then(listings => {
+    let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    
+    this.setState({
+            userId: cookieValue
+        }, () => {
+            API.getUser(this.state.userId).then(user => {
+                this.setState({ user: user.data });
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+        
+    )
+
+    API.getListings().then(listings => {
             listings.data.forEach(listing => {
                 this.state.listings.push(listing);
             })
-        });
+    });
 
-        API.getUser(this.state.userId).then(user => {
-            this.setState({ user: user.data });
-        });
     }
 
     refreshUser() {

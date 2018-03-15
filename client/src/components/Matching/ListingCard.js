@@ -22,7 +22,7 @@ class ListingCard extends Component {
     cropImage = (url) => {
         var frontUrl = url.slice(0, 49);
         var backUrl = url.slice(49);
-        var crop = '/c_scale,w_500'
+        var crop = '/c_scale,w_600'
         var finalUrl = frontUrl + crop + backUrl
         return finalUrl;
     }
@@ -33,7 +33,7 @@ class ListingCard extends Component {
         };
 
         return (
-            <Card style={{ width: '400px' }} rounded={true} className="card" >
+            <Card style={{ width: '600px' }} rounded={true} className="card" >
                 <CardMedia overlay={<CardTitle title={this.props.title} />}>
                     <div className="img-slider-container">
                         <Slider {...sliderSettings}>
@@ -41,7 +41,7 @@ class ListingCard extends Component {
                                 let croppedImage = this.cropImage(picture);
                                 return (
                                     <div data-index={picture} key={picture}>
-                                        <img alt="" className="listing-photo" style={{ width: "400px" }} src={croppedImage} />
+                                        <img alt="" className="listing-photo" style={{ width: "600px" }} src={croppedImage} />
                                     </div>
                                 )
                             })}

@@ -25,8 +25,11 @@ class MatchingContainer extends Component {
         });
 
         API.getUser(this.state.userId).then(user => {
-            this.setState({ user: user.data });
-        });
+            this.setState({ user: user.data });      
+        })
+        .then(() => {
+            this.props.userMatches(this.state.user)
+        })
     }
 
     refreshUser() {

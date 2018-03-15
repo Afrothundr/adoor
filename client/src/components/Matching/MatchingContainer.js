@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Slider from 'react-slick';
 import ListingCard from './ListingCard';
-import './MatchingContainer.css'
 import API from '../../utils/API';
 import { checkForCommunityMatch, checkForLocationMatch } from '../../utils/MatchingAlgorithm';
 

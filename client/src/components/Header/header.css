@@ -1,5 +1,4 @@
 h2{
-    text-align: center;
     font-size: 30px;
 }
 
@@ -8,7 +7,16 @@ h2{
     margin-top: 30px;
 }
 
-.header{
-    background-color:#d3d3d3;
-    height: 100px;
+.header-component{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    background-color:#ffd2e8;
+
+}
+
+.header-tagline{
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    width: 500px;
+    margin: auto;
 }

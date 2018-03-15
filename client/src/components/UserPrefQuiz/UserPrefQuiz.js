@@ -11,37 +11,55 @@ class UserPrefQuiz extends Component {
     constructor() {
         super();
         //intial state
-        var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");;
+        
         this.state = {
             //replace userId with stored cookie value
-            userId: cookieValue,
+            userId: null,
             zipcode: 64111,
             bedrooms: 2,
             bathrooms: 2,
             formOne: 'inline-block',
             formTwo: 'none',
-            preferencesCreated: false
+            preferencesCreated: false,
+            isComingFromNext: null
         }
+    }
+    componentWillMount(){
+        var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        console.log("cookie value: " + cookieValue);
+        this.setState({
+            userId: cookieValue
+        })
+        console.log("user id in mount: " + this.state.userId);
     }
     //functions
     toFormTwo = event => {
+        console.log("In toFormTwo event!!!!");
         this.setState({
             formOne: 'none',
-            formTwo: 'inline-block'
+            formTwo: 'inline-block',
+            isComingFromNext: true
         });
     }
     handleSubmit = event => {
         event.preventDefault();
+        console.log("In handleSubmit event");
+        if(this.state.isComingFromNext){
+            this.setState({
+                isComingFromNext: false
+            })
+        }else{
         //create user prefs
-        let userPref = this.calculatePrefs();
-        //store preferences in database and update user object
-        API.createPref(userPref)
-            .then((preferences) => {
-                console.log(preferences.data);
-                this.setState({
-                    preferencesCreated: true
-                })
-            }).catch(err => console.log(err));
+            let userPref = this.calculatePrefs();
+            //store preferences in database and update user object
+            API.createPref(userPref)
+                .then((preferences) => {
+                    console.log(preferences.data);
+                    this.setState({
+                        preferencesCreated: true
+                    })
+                }).catch(err => console.log(err));
+        }
     }
     handleChange = event => {
         const { name, value } = event.target;
@@ -89,7 +107,10 @@ class UserPrefQuiz extends Component {
             budget: this.state.budget,
             bedrooms: this.state.bedrooms,
             bathrooms: this.state.bathrooms
+
         };
+        console.log("user id in after return: " + this.state.userId);
+ 
     }
     //JSX Render
     render() {
@@ -97,7 +118,7 @@ class UserPrefQuiz extends Component {
         return (
             <form className="wrapper-form" onSubmit={this.handleSubmit}>
                 <div style={{ display: this.state.formOne }}>
-                    <h1>Just a few questions. . .</h1>
+                    <h1 className="header-tag">Just a few questions. . .</h1>
                     <hr />
                     <h3>Do You Have Kids?</h3>
                     <RadioButtonGroup name="kids" onChange={this.handleChange}>

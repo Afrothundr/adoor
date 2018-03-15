@@ -67,7 +67,7 @@ router.route('/user')
 							// saved!
 							console.log("user saved!")
 						})
-						.then(() =>{
+						.then((newUser) =>{
 							console.log("user saved!");
 							res.json(newUser);
 						});

@@ -94,12 +94,12 @@ class BuySignUp extends React.Component{
                 <h1 className='signUp'>Sign Up</h1>
             </div>
             <div className='buttons'>
-                <FacebookLogin
+                {/* <FacebookLogin
                     appId="927418800748086"
                     autoLoad={false}
                     fields="name,email,picture"
                     callback={this.responseFacebook.bind(this)}
-                />
+                /> */}
                 <GoogleLogin
                     clientId='786832441182-3vhl05ve7u3ee3fr35j477lnv2gqv2h0.apps.googleusercontent.com'
                     buttonText="Login with Google"

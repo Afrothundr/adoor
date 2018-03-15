@@ -20,7 +20,6 @@ class SellerBuyerLogout extends React.Component {
     };
 
     googleLogout(obj) {
-        // axios.post('/auth/google/api/logout');
         console.log("Google user loging out.");
         this.setState({
             isLoggedIn: false

@@ -11,10 +11,9 @@ const Matching = props => {
     <div className="matching-dashboard-wrapper page">
       <div className="my-matches-button">
       <MatchingButton />
+      <SellerBuyerLogout/>
       </div>
       <div>
-        <MatchingSideBar />
-        <SellerBuyerLogout/>
         <div className="matching-main">
           <MatchingContainer />
         </div>

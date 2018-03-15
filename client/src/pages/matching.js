@@ -1,5 +1,7 @@
 import React from "react";
 import MatchingContainer from '../components/Matching/MatchingContainer';
+import MatchingSideBar from '../components/matchingSideBar/matchingSideBar';
+import SellerBuyerLogout from '../components/SellerBuyerLogout/SellerBuyerLogout';
 import MyMatches from '../components/myMatches/myMatches';
 import MatchingButton from '../components/MatchingButton/MatchingButton';
 import './gridStyles.css';
@@ -11,6 +13,8 @@ const Matching = props => {
       <MatchingButton />
       </div>
       <div>
+        <MatchingSideBar />
+        <SellerBuyerLogout/>
         <div className="matching-main">
           <MatchingContainer />
         </div>

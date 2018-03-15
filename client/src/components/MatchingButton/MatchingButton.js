@@ -26,7 +26,7 @@ class MatchingButton extends Component {
               onClick={this.handleToggle}
             />
         </div>
-        <div className='drawershit'>
+        <div className='drawer'>
             <Drawer
               docked={false}
               width={'50%'}

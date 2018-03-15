@@ -14,6 +14,7 @@ class Matching extends Component {
     }
 }
 
+
 handleuserHasMatches = user => {
   if (user.matches){
     this.setState({

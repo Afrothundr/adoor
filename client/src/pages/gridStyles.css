@@ -23,26 +23,7 @@ body{
 .matching-main{
     margin-top: 30px;
 }
-/* 
-.logo{
-    grid-area: logo;
-}
 
-.matching-main{
-    grid-area: main;
-}
 
-.my-matches-button{
-    grid-area: matchbutton;
-}
 
-.matching-dashboard-wrapper-page{
-    display: grid;
-    grid-template-rows: auto auto auto;
-    grid-template-columns: auto auto auto;
-    grid-template-areas:
-        "..... logo ....."
-        "main main main"
-        "..... matchbutton ....."
-} */
 

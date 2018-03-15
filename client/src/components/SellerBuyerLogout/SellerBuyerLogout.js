@@ -4,6 +4,7 @@ import { Router, Switch } from 'react-router-dom';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
+import './logout.css'
 
 
 class SellerBuyerLogout extends React.Component {
@@ -38,6 +39,7 @@ class SellerBuyerLogout extends React.Component {
             <div>
                 <div className='logout'>
                     <GoogleLogout
+                        className="google-logout"
                         buttonText="Logout"
                         onLogoutSuccess={this.googleLogout.bind(this)}>
                     </GoogleLogout>

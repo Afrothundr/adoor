@@ -8,25 +8,23 @@ import BuyerLogin from './pages/buyerLogin';
 import SellerAcctLogin from './pages/sellerLogin';
 import Matching from './pages/matching';
 import Home from './pages/index';
-import SellerBuyerLogout from './components/SellerBuyerLogout/SellerBuyerLogout';
-import MyMatches from './components/myMatches/myMatches';
+
 
 
 const App = props => {
   return (
+
     <Router>
         <Route
           render={({ location }) => (
-            <PageTransition timeout={250}>
+            <PageTransition timeout={500}>
               <Switch location={ location }>
-                <Route exact path="/logout" component={SellerBuyerLogout}></Route>
                 <Route exact path="/" component={Home}></Route>
                 <Route exact path="/matching" component={Matching}></Route>
                 <Route exact path="/seller/dashboard" component={SellerDashboard}></Route>
                 <Route exact path="/profile/login" component={BuyerLogin}></Route>
                 <Route exact path="/profile/create" component={BuyerProfileCreate}></Route>
                 <Route exact path="/seller/login" component={SellerAcctLogin}></Route>
-                <Route exact path="/mymatches" component={MyMatches}></Route>
               </Switch>
             </PageTransition>
           )}

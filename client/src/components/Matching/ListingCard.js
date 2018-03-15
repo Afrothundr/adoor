@@ -40,7 +40,9 @@ class ListingCard extends Component {
                             {this.props.listingInfo.picturePath.map(picture => {
                                 let croppedImage = this.cropImage(picture);
                                 return (
-                                    <img alt="" key={picture} style={{ width: "400px" }} src={croppedImage} />
+                                    <div data-index={picture} key={picture}>
+                                        <img alt="" className="listing-photo" style={{ width: "400px" }} src={croppedImage} />
+                                    </div>
                                 )
                             })}
                         </Slider>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import "./myMatches.css";
 import API from '../../utils/API';
 import {
@@ -9,7 +8,7 @@ import {
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
-  } from 'material-ui/Table';
+} from 'material-ui/Table';
 
 class MyMatches extends Component {
     constructor() {

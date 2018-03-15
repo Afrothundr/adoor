@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Slider from 'react-slick';
 import ListingCard from './ListingCard';
-import './MatchingContainer.css'
 import API from '../../utils/API';
 import { checkForCommunityMatch, checkForLocationMatch } from '../../utils/MatchingAlgorithm';
 
@@ -113,7 +112,7 @@ class MatchingContainer extends Component {
                 {
                     this.state.listings.map(listing => {
                         return (
-                            <div key={listing._id}>
+                            <div key={listing._id} data-index={listing._id}>
                                 <ListingCard listingInfo={listing} key={listing._id} title={`${listing.bedrooms} bed ${listing.bathrooms} bath`} onDecision={this.handleDecision} />
                             </div>
                         )

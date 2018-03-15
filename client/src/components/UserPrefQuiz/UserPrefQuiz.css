@@ -1,17 +1,43 @@
+
 .wrapper-form{
-    padding: 100px;
     width: 500px;
     margin: auto;
     align-content: center;
     text-align: center;
+    font-family: 'wire one', sans-serif;
 }
 
-h1{
-    font-size: 40px;
+.header-tag{
+    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
 }
+
+h3{
+    font-family: 'wire one', sans-serif;
+    font-size: 15px;
+} 
 
 RadioButton{
     display: inline-block;
     width: auto; 
     margin: 0px 5px;
 }
+
+
+.form-step-2{
+    display: none;
+}
+
+h1{
+    font-size: 60px;
+}
+
+.next-button{
+    margin-top: 50px;
+}
+
+.wrapper-form{
+    width: 50%;
+    margin: auto;
+}
+

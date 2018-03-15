@@ -9,3 +9,13 @@
     grid-auto-rows: 75px;
     
 }
+
+form{
+    text-align: center;
+}
+
+
+.form-wrapper{
+    width: 60%;
+    margin: auto;
+}

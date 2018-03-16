@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import { GoogleLogout } from 'react-google-login';
+import './logout.css';
 
 class SellerBuyerLogout extends React.Component {
 
@@ -32,6 +33,7 @@ class SellerBuyerLogout extends React.Component {
             <div>
                 <div className='logout'>
                     <GoogleLogout
+                        className="google-logout"
                         buttonText="Logout"
                         onLogoutSuccess={this.googleLogout.bind(this)}>
                     </GoogleLogout>

@@ -71,6 +71,7 @@ class BuySignUp extends React.Component{
             </div>
             <div className='buttons'>
                 <GoogleLogin
+                    className="google-login-button"
                     clientId='786832441182-3vhl05ve7u3ee3fr35j477lnv2gqv2h0.apps.googleusercontent.com'
                     buttonText="Login with Google"
                     onSuccess={this.responseGoogle.bind(this)}

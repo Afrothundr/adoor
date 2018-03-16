@@ -14,7 +14,7 @@ class BuySignUp extends React.Component{
     }
 
     responseGoogle(response){
-        axios.post('/auth/google/user', response)
+        axios.post('/auth/google/seller', response)
         .then(res => {
             document.cookie = `userId=${res.data._id}`;
             if(res.data.preferences){
@@ -35,7 +35,7 @@ class BuySignUp extends React.Component{
     };
     
     responseFacebook(response){
-        axios.post('/auth/facebook/user', response)
+        axios.post('/auth/facebook/seller', response)
         .then(res => {
             document.cookie = `userId=${res.data._id}`;
             if(res.data.preferences){

@@ -1,6 +1,7 @@
 .component-wrapper{
     align-items: center;
     padding-top: 25%;
+    text-align: center;
     
 }
 
@@ -20,7 +21,7 @@ hr{
     color: white;
     background-color:#ff4081;
     border: none;
-    padding: 5px 5px;
+    padding: 15px 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -28,4 +29,12 @@ hr{
     border-radius: 12px;
     width: 200px;
     margin: auto;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.signin-logo{
+    width: 100%;
+    margin: auto;
+    margin-bottom: 50px;
 }

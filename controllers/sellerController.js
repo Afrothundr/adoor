@@ -23,6 +23,7 @@ module.exports = {
   },
   create: function(req, res) {
     let newSeller = {
+        googleId: req.body.googleId,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,

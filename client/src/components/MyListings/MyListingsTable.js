@@ -36,7 +36,13 @@ class MyListings extends Component {
     }
 
     componentWillMount = () => {
-        this.getListings(this.state.sellerId)
+        let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        this.setState({
+                sellerId: cookieValue
+            }, () => {
+                this.getListings(this.state.sellerId)
+            }
+        )
     }
     // JSX Render
     render() {

@@ -25,7 +25,7 @@ class AddListingForm extends Component {
         super(props);
         this.state = {
             //replace userId with stored cookie value
-            sellerId: '5a887baf65e859b4acd2f60c',
+            sellerId: null,
             zipcode: 64111,
             bedrooms: 2,
             bathrooms: 2,
@@ -162,6 +162,13 @@ class AddListingForm extends Component {
     handleModalClose = () => {
         this.setState({ modalOpen: false })
         window.location.reload();
+    }
+
+    componentWillMount = () => {
+        let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        this.setState({
+                sellerId: cookieValue
+            })
     }
 
 

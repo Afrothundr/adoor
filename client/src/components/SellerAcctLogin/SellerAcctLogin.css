@@ -7,18 +7,25 @@
 .signUp{
     margin: auto;
     width: 50%;
-    text-align: left;
-    font-size: 80px;
-}
-
-.buttons{
-    margin-top: 15px;
-    margin: auto;
-    width: 200px;
     text-align: center;
+    font-size: 60px;
 }
 
 hr{
     width: 50%;
     margin-bottom: 50px;
+}
+
+.google-login-button{
+    color: white;
+    background-color:#ff4081;
+    border: none;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+    width: 200px;
+    margin: auto;
 }

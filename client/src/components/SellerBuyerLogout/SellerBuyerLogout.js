@@ -1,10 +1,7 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router';
-import { Router, Switch } from 'react-router-dom';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
-import axios from 'axios';
-
+import { Redirect } from 'react-router';
+import { GoogleLogout } from 'react-google-login';
+import './logout.css';
 
 class SellerBuyerLogout extends React.Component {
 
@@ -20,12 +17,10 @@ class SellerBuyerLogout extends React.Component {
     };
 
     googleLogout(obj) {
-        console.log("Google user loging out.");
         this.setState({
             isLoggedIn: false
         })
         this.delete_cookie("userId");
-        console.log("is user logged in? " + this.state.isLoggedIn);
     }
 
 
@@ -38,6 +33,7 @@ class SellerBuyerLogout extends React.Component {
             <div>
                 <div className='logout'>
                     <GoogleLogout
+                        className="google-logout"
                         buttonText="Logout"
                         onLogoutSuccess={this.googleLogout.bind(this)}>
                     </GoogleLogout>

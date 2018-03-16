@@ -55,6 +55,18 @@ class MyMatches extends Component {
             this.getMatches(this.state.userId)
         })
     }
+
+    componentWillReceiveProps = () => {
+        //empty listings in state and refresh table
+        if (this.props.matchAdded === true) {
+            this.setState({
+                listings: []
+            }, () => {
+                console.log('props recieved matching table updated');
+                this.getMatches(this.state.userId);
+            })
+        }
+    }
     // JSX Render
     render() {
         return (

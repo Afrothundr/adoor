@@ -8,12 +8,21 @@ import RaisedButton from 'material-ui/RaisedButton';
 class MatchingButton extends Component {
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {
+          open: false,
+          matchAdded: false,
+        };
     }
 
-    handleToggle = () => this.setState({open: !this.state.open});
+    handleToggle = () => this.setState({
+      open: !this.state.open,
+      matchAdded: !this.state.matchAdded
+    });
 
-    handleClose = () => this.setState({open: false});
+    handleClose = () => this.setState({
+      open: false,
+      matchAdded: false
+    });
      
     onRequestChange = open => this.setState({open});
 
@@ -35,8 +44,8 @@ class MatchingButton extends Component {
               onRequestChange={(open) => this.setState({open})}
             >
             <h2>Your Matches</h2>
-            <MyMatches style={{width:'100%'}} />
-
+            <MyMatches matchAdded={this.state.matchAdded ? true : false} style={{width:'100%'}} />
+            
             </Drawer>
             </div>
           </div>

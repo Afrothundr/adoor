@@ -64,11 +64,13 @@ class MatchingContainer extends Component {
                 let score = (this.compareCompatibility(user, listing.data));
                 if (score > 2) {
                     alert("It's a match!");
-                    API.addMatch(user.matches._id, listing.data._id).then(match => {
-                        console.log("Match Added!");
-                    }).catch(err => {
-                        console.log(err);
-                    })
+                    if (!user.matches.history.includes(listing.data._id)) {
+                        API.addMatch(user.matches._id, listing.data._id).then(match => {
+                            console.log("Match Added!");
+                        }).catch(err => {
+                            console.log(err);
+                        })
+                    }
                 }
 
             } else {

@@ -8,7 +8,7 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Snackbar from 'material-ui/Snackbar';
 import axios from 'axios';
 import ZipCodes from '../../utils/zipcodes';
-import Keys from '../../utils/keys';
+import Keys from '../../utils/keys2';
 import API from '../../utils/API';
 import { createCommunityFactors } from '../../utils/CommunityAlgorithm';
 import Dialog from 'material-ui/Dialog';

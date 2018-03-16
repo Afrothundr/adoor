@@ -1,4 +1,4 @@
-import Keys from './keys';
+import Keys from './keys2';
 import axios from 'axios';
 import API from './API';
 

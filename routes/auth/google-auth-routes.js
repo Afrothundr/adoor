@@ -4,6 +4,7 @@ const router = express.Router();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Seller = mongoose.model('Seller');
 const googleStrategy = require('../../config/strategies/google.strategy');
 
 
@@ -75,4 +76,35 @@ router.route('/user')
 			});
 });
 
+
+router.route('/seller')
+	.post( function (req, res) {
+		console.log(req.body.profileObj.googleId);
+		Seller.findOne({ googleId: req.body.profileObj.googleId })
+			.then((existingSeller) => {
+				if (existingSeller) {
+					console.log("User already exists");
+					res.json(existingSeller);
+				} else {
+						//we want to create a new user
+						//User model instance
+						const newSeller = new Seller({
+							googleId: req.body.profileObj.googleId,
+							firstName: req.body.profileObj.givenName,
+							lastName: req.body.profileObj.familyName,
+							email: req.body.profileObj.email
+						})
+						.save(function (err) {
+							if (err){console.log(err)} 
+							
+							// saved!
+							console.log("user saved!")
+						})
+						.then((newSeller) =>{
+							console.log("user saved!");
+							res.json(newSeller);
+						});
+					}
+			});
+});
 module.exports = router;

@@ -78,6 +78,7 @@ class AddListingForm extends Component {
         //create listing object
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address},+${this.state.city},+MO&key=${Keys.googleMaps}`)
             .then(response => {
+                console.log(response);
                 this.setState({
                     latitude: response.data.results[0].geometry.location.lat,
                     longitude: response.data.results[0].geometry.location.lng

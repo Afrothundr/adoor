@@ -1,20 +1,9 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router';
-import { Router, Switch } from 'react-router-dom';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
+import {Redirect} from 'react-router';
+import { GoogleLogin} from 'react-google-login';
 import axios from 'axios';
 import "./SellerAcctLogin.css";
-
-const styles = {
-    display: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignText: 'center'
-    }
-};
-
-class BuySignUp extends React.Component {
+class BuySignUp extends React.Component{
 
     constructor(props) {
         super(props);
@@ -23,57 +12,46 @@ class BuySignUp extends React.Component {
             firstTimeUser: null
         };
     }
-
-    responseGoogle(response) {
-        axios.post('/auth/google/user', response)
-            .then(res => {
-                console.log(res.data);
-                document.cookie = `userId=${res.data._id}`;
-                console.log(document.cookie);
-                if (res.data.preferences) {
-                    console.log("Not a new user google in promise");
-                    this.setState({
-                        firstTimeUser: false,
-                        isLoggedIn: true
-                    })
-                } else {
-                    console.log("New user in google axios promise");
-                    this.setState({
-                        firstTimeUser: true,
-                        isLoggedIn: true,
-                    })
-                }
-                console.log("first time user? " + this.state.firstTimeUser);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+    responseGoogle(response){
+        axios.post('/auth/google/seller', response)
+        .then(res => {
+            document.cookie = `userId=${res.data._id}`;
+            if(res.data.preferences){
+                this.setState({
+                    firstTimeUser: false,
+                    isLoggedIn: true
+                })
+            }else{
+                this.setState({
+                    firstTimeUser: true,
+                    isLoggedIn: true,                    
+                })
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+          });
     };
-
-    responseFacebook(response) {
-        axios.post('/auth/facebook/user', response)
-            .then(res => {
-                console.log(res.data);
-                document.cookie = `userId=${res.data._id}`;
-                console.log(document.cookie);
-                if (res.data.preferences) {
-                    console.log("Not a new user in axios facebook promise");
-                    this.setState({
-                        firstTimeUser: false,
-                        isLoggedIn: true
-                    })
-                } else {
-                    console.log("New user in axios facebook promise");
-                    this.setState({
-                        firstTimeUser: true,
-                        isLoggedIn: true,
-                    })
-                }
-                console.log("first time user? " + this.state.firstTimeUser);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+    
+    responseFacebook(response){
+        axios.post('/auth/facebook/seller', response)
+        .then(res => {
+            document.cookie = `userId=${res.data._id}`;
+            if(res.data.preferences){
+                this.setState({
+                    firstTimeUser: false,
+                    isLoggedIn: true
+                })
+            }else{
+                this.setState({
+                    firstTimeUser: true,
+                    isLoggedIn: true,                    
+                })
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+          });
     };
 
     logout() {
@@ -107,7 +85,6 @@ class BuySignUp extends React.Component {
                         onSuccess={this.responseGoogle.bind(this)}
                         onFailure={this.responseGoogle.bind(this)}
                     />
-
                 </div>
             </div>
         )

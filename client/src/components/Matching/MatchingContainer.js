@@ -11,25 +11,33 @@ class MatchingContainer extends Component {
         //intial state
         this.state = {
             //replace userId with stored cookie value
-            userId: '5a8df22e0beba811104ca437',
+            userId: null,
             listings: [],
 
         }
         this.next = this.next.bind(this)
     }
     componentWillMount() {
-        API.getListings().then(listings => {
+    let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    
+    this.setState({
+            userId: cookieValue
+        }, () => {
+            API.getUser(this.state.userId).then(user => {
+                this.setState({ user: user.data });
+            }).then(() => {
+                this.props.userMatches(this.state.user)
+            }).catch(err => {
+                console.log(err);
+            })
+        }
+    )
+
+    API.getListings().then(listings => {
             listings.data.forEach(listing => {
                 this.state.listings.push(listing);
             })
-        });
-
-        API.getUser(this.state.userId).then(user => {
-            this.setState({ user: user.data });      
-        })
-        .then(() => {
-            this.props.userMatches(this.state.user)
-        })
+    });
     }
 
     refreshUser() {
@@ -56,11 +64,13 @@ class MatchingContainer extends Component {
                 let score = (this.compareCompatibility(user, listing.data));
                 if (score > 2) {
                     alert("It's a match!");
-                    API.addMatch(user.matches._id, listing.data._id).then(match => {
-                        console.log("Match Added!");
-                    }).catch(err => {
-                        console.log(err);
-                    })
+                    if (!user.matches.history.includes(listing.data._id)) {
+                        API.addMatch(user.matches._id, listing.data._id).then(match => {
+                            console.log("Match Added!");
+                        }).catch(err => {
+                            console.log(err);
+                        })
+                    }
                 }
 
             } else {

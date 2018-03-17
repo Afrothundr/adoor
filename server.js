@@ -9,7 +9,7 @@ const Preference  = require('./models/Preference');
 const session = require('express-session');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
-const keys = require('./config/keys');
+// const keys = require('./config/keys');
 const dotenv = require('dotenv');
 
 
@@ -18,12 +18,12 @@ const app = express();
 const router = express.Router();
 
 
-app.use(
-    cookieSession({
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        keys: [keys.cookieKey]
-    })
-);
+// app.use(
+//     cookieSession({
+//         maxAge: 30 * 24 * 60 * 60 * 1000,
+//         keys: [keys.cookieKey]
+//     })
+// );
 
 //setup port
 const port = process.env.PORT || 3001;

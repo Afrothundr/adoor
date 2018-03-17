@@ -9,12 +9,14 @@
 
 <h3>Buying</h3>
 <p>A user interested in buying a house, would take a preference quiz - then be taken to a page to look at all of the houses in their area. The houses that match their preferences will come up as a match! To look at their matches they can click on the matching dashboard and reach out to the respective seller. See below for a demonstration</p>
-https://i.imgur.com/D525P97.gif
-
+<br>
+<iframe class="imgur-embed" width="100%" height="1047" frameborder="0" src="https://i.imgur.com/D525P97.gifv#embed"></iframe>
+<br>
 
 <h3>Selling</h3>
 <p>If a user is a seller, they are taken to an Add A Listing page. This asks the specifics about the property being uploaded. From there, our algorithm locates the address that you have given, and determines whether the house is close to amentities that potential buyers would be interested in. See below.</p>
-https://i.imgur.com/8VSyUdQ.gif
+<br>
+<a href="https://imgur.com/8VSyUdQ"><img src="https://i.imgur.com/8VSyUdQ.gif" title="source: imgur.com" /></a>
 
 
 

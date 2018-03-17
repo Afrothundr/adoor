@@ -9,6 +9,7 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
+import { read_cookie } from 'sfcookies';
 
 class MyMatches extends Component {
     constructor() {
@@ -48,9 +49,9 @@ class MyMatches extends Component {
     }
 
     componentWillMount = () => {
-        let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        // let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         this.setState({
-            userId: cookieValue
+            userId: read_cookie('userId')
         }, () => {
             this.getMatches(this.state.userId)
         })

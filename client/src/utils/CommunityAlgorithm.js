@@ -36,6 +36,7 @@ export function createCommunityFactors(listing) {
     })
   function saveCommunityData(lifestyle) {
     API.createCommunity(lifestyle)
-      .then(response => console.log(response));
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
   }
 }

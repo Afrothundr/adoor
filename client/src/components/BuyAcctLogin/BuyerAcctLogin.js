@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router';
 import { GoogleLogin} from 'react-google-login';
 import axios from 'axios';
+import { bake_cookie, delete_cookie } from 'sfcookies';
 import "./BuyerAcctLogin.css"
 
 class BuySignUp extends React.Component{
@@ -17,7 +18,8 @@ class BuySignUp extends React.Component{
     responseGoogle(response) {
         axios.post('/auth/google/user', response)
         .then(res => {
-            document.cookie = `userId=${res.data._id}`;
+            let cookie_key = 'userId';
+            bake_cookie(cookie_key, res.data._id);
             if(res.data.preferences){
                 this.setState({
                     firstTimeUser: false,
@@ -34,6 +36,10 @@ class BuySignUp extends React.Component{
             console.log(error);
           });
     };
+
+    componentWillMount = () => {
+        delete_cookie('userId');
+    }
 
     responseFacebook(response) {
         axios.post('/auth/facebook/user', response)

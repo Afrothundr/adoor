@@ -3,6 +3,8 @@ import {Redirect} from 'react-router';
 import { GoogleLogin} from 'react-google-login';
 import axios from 'axios';
 import "./SellerAcctLogin.css";
+import { bake_cookie, delete_cookie } from 'sfcookies';
+
 class BuySignUp extends React.Component{
 
     constructor(props) {
@@ -15,28 +17,8 @@ class BuySignUp extends React.Component{
     responseGoogle(response){
         axios.post('/auth/google/seller', response)
         .then(res => {
-            document.cookie = `userId=${res.data._id}`;
-            if(res.data.preferences){
-                this.setState({
-                    firstTimeUser: false,
-                    isLoggedIn: true
-                })
-            }else{
-                this.setState({
-                    firstTimeUser: true,
-                    isLoggedIn: true,                    
-                })
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-          });
-    };
-    
-    responseFacebook(response){
-        axios.post('/auth/facebook/seller', response)
-        .then(res => {
-            document.cookie = `userId=${res.data._id}`;
+            let cookie_key = 'userId';
+            bake_cookie(cookie_key, res.data._id);
             if(res.data.preferences){
                 this.setState({
                     firstTimeUser: false,
@@ -58,6 +40,9 @@ class BuySignUp extends React.Component{
         axios.post('/auth/google/api/logout');
     }
 
+    componentWillMount = () => {
+        delete_cookie('userId');
+    }
 
     render() {
         if (this.state.isLoggedIn === true) {

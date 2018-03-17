@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from '../../utils/API';
+import { read_cookie } from 'sfcookies';
 import {
     Table,
     TableBody,
@@ -14,7 +15,7 @@ class MyListings extends Component {
         super();
         this.state = {
             //replace sellerId with stored cookie value
-            sellerId: '5a887baf65e859b4acd2f60c',
+            sellerId: null,
             listings: []
         }
     }
@@ -36,9 +37,8 @@ class MyListings extends Component {
     }
 
     componentWillMount = () => {
-        let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         this.setState({
-                sellerId: cookieValue
+                sellerId: read_cookie('userId')
             }, () => {
                 this.getListings(this.state.sellerId)
             }

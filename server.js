@@ -28,8 +28,6 @@ const router = express.Router();
 //setup port
 const port = process.env.PORT || 3001;
 
-app.set('port', (process.env.PORT || 3001));
-
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -56,6 +54,7 @@ mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${proc
 
 require('dotenv').config();
 
+app.set('port', (process.env.PORT || 3001));
 //init API
 router.get('/', (req, res) => {
     res.json({message: 'API Initialized!'});

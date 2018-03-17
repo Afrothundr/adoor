@@ -10,10 +10,9 @@ class MatchingContainer extends Component {
         super();
         //intial state
         this.state = {
-            //replace userId with stored cookie value
+
             userId: null,
             listings: [],
-
         }
         this.next = this.next.bind(this)
     }
@@ -46,6 +45,7 @@ randomize = (array, b, c, d) => { c = array.length; while (c) b = Math.random() 
 refreshUser() {
     API.getUser(this.state.userId).then(user => {
         this.setState({ user: user.data });
+        this.props.userMatches(this.state.user);
     });
 }
 //handle decision

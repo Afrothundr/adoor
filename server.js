@@ -48,7 +48,7 @@ app.use(session({secret: 'anything'}));
 mongoose.Promise = global.Promise;
 
 //db config update parameter to keys.mongoURI
-mongoose.connect('mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_SERVER}',
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_SERVER}`,
 {
     useMongoClient: true
 });

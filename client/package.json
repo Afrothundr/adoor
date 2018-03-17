@@ -6,6 +6,7 @@
   "dependencies": {
     "cloudinary": "^1.10.0",
     "cloudinary-react": "^1.0.6",
+    "dotenv": "^5.0.1",
     "material-ui": "^0.20.0",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",

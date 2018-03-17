@@ -8,7 +8,7 @@
 <h3>Buying</h3>
 <p>A user interested in buying a house, would take a preference quiz - then be taken to a page to look at all of the houses in their area. The houses that match their preferences will come up as a match! To look at their matches they can click on the matching dashboard and reach out to the respective seller. See below for a demonstration</p>
 <br>
-<iframe class="imgur-embed" width="100%" height="1047" frameborder="0" src="https://i.imgur.com/D525P97.gifv#embed"></iframe>
+<iframe class="imgur-embed" width="100%" height="1047" frameborder="0" src="https://i.imgur.com/kgRh91F.gifv#embed"></iframe>
 
 
 <h3>Selling</h3>

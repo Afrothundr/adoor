@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Slider from 'react-slick';
 import ListingCard from './ListingCard';
 import API from '../../utils/API';
+import { read_cookie } from 'sfcookies';
 import { checkForCommunityMatch, checkForLocationMatch } from '../../utils/MatchingAlgorithm';
 
 
@@ -17,10 +18,8 @@ class MatchingContainer extends Component {
         this.next = this.next.bind(this)
     }
     componentWillMount() {
-        let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-
         this.setState({
-            userId: cookieValue
+            userId: read_cookie('userId')
         }, () => {
             API.getUser(this.state.userId).then(user => {
                 this.setState({ user: user.data });

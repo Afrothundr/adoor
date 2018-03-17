@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import MatchingContainer from '../components/Matching/MatchingContainer';
-import MatchingSideBar from '../components/matchingSideBar/matchingSideBar';
 import SellerBuyerLogout from '../components/SellerBuyerLogout/SellerBuyerLogout';
-import MyMatches from '../components/myMatches/myMatches';
 import MatchingButton from '../components/MatchingButton/MatchingButton';
 import './gridStyles.css';
 

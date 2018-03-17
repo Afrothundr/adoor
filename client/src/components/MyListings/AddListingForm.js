@@ -12,6 +12,8 @@ import Keys from '../../utils/keys';
 import API from '../../utils/API';
 import { createCommunityFactors } from '../../utils/CommunityAlgorithm';
 import Dialog from 'material-ui/Dialog';
+import { read_cookie } from 'sfcookies';
+
 import './AddListingForm.css';
 
 
@@ -99,7 +101,12 @@ class AddListingForm extends Component {
 
                 API.createListing(listing)
                     .then(response => {
-                        listing.listingId = response.data.listings[response.data.listings.length - 1];
+                        console.log(response);
+                        if (response.data.listings.length > 1) {
+                            listing.listingId = response.data.listings[response.data.listings.length - 1];
+                        } else {
+                            listing.listingId = response.data.listings[0];
+                        }
                         console.log(listing);
                         createCommunityFactors(listing);
                         this.setState({ modalOpen: true });
@@ -166,9 +173,8 @@ class AddListingForm extends Component {
     }
 
     componentWillMount = () => {
-        let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userId\s*\=\s*([^;]*).*$)|^.*$/, "$1");
         this.setState({
-                sellerId: cookieValue
+                sellerId: read_cookie('userId')
             })
     }
 

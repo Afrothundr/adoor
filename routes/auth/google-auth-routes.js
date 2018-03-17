@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Seller = mongoose.model('Seller');
-const googleStrategy = require('../../config/strategies/google.strategy');
+// const googleStrategy = require('../../config/strategies/google.strategy');
 
 
 const whitelist = ['https://accounts.google.com/', 'http://accounts.google.com/', "http:localhost:3000"]

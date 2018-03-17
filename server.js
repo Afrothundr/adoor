@@ -10,6 +10,7 @@ const session = require('express-session');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
+const dotenv = require('dotenv');
 
 
 //instances
@@ -25,13 +26,13 @@ app.use(
 );
 
 //setup port
-const PORT = process.env.PORT || 3001;
+//const port = process.env.PORT || 3001;
+
+app.set('port', (process.env.PORT || 3001));
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-
 
 // Serve up static assets
 app.use(express.static("/client/build"));
@@ -43,19 +44,16 @@ app.use(router);
 app.use(session({secret: 'anything'}));
 
 
-//Access oauth strategies
-//require('./config/passport')(app);
-//require("./routes/auth/google-auth-routes");
-
-
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
 
 //db config update parameter to keys.mongoURI
-mongoose.connect('mongodb://admin:1111@ds225028.mlab.com:25028/adoor',
+mongoose.connect('mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_SERVER}',
 {
     useMongoClient: true
-  });
+});
+
+require('dotenv').config();
 
 //init API
 router.get('/', (req, res) => {
@@ -66,7 +64,7 @@ router.get('/', (req, res) => {
 app.use(routes);
 
 //start server
-app.listen(PORT, () => {
-    console.log(`api running on ${PORT}!`);
-})
+// app.listen(port, () => {
+//     console.log(`api running on ${port}!`);
+// })
 

@@ -26,7 +26,7 @@ app.use(
 );
 
 //setup port
-//const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001;
 
 app.set('port', (process.env.PORT || 3001));
 
@@ -64,7 +64,7 @@ router.get('/', (req, res) => {
 app.use(routes);
 
 //start server
-// app.listen(port, () => {
-//     console.log(`api running on ${port}!`);
-// })
+app.listen(port, () => {
+    console.log(`api running on ${port}!`);
+})
 

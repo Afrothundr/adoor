@@ -10,7 +10,7 @@
 <br>
 <a href="https://imgur.com/kgRh91F"><img src="https://i.imgur.com/kgRh91F.gif" title="source: imgur.com" /></a>
 
-
+<br>
 
 <h3>Selling</h3>
 <p>If a user is a seller, they are taken to an Add A Listing page. This asks the specifics about the property being uploaded. From there, our algorithm locates the address that you have given, and determines whether the house is close to amentities that potential buyers would be interested in. See below.</p>

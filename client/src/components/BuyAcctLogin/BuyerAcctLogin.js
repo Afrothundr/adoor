@@ -18,6 +18,7 @@ class BuySignUp extends React.Component{
     responseGoogle(response) {
         axios.post('/auth/google/user', response)
         .then(res => {
+            //store cookie
             let cookie_key = 'userId';
             bake_cookie(cookie_key, res.data._id);
             if(res.data.preferences){

@@ -1,32 +1,33 @@
 export function checkForCommunityMatch(user, listing) {
     //checks user preferences vs. the listing's community score
     var communityScore = 0;
-
-    if (
-        user.preferences.caresAboutSchools === true &&
-        listing.community.schoolsCount > 15) {
-        console.log("you like good schools");
-        communityScore++;
-    } if (
-        user.preferences.caresAboutGroceryStores === true &&
-        listing.community.groceryStoresCount > 1) {
-        console.log("you like close grocery stores");
-        communityScore++;
-    } if (
-        user.preferences.caresAboutParks === true &&
-        listing.community.parksCount > 2) {
-        console.log("you like parks nearby");
-        communityScore++;
-    } if (
-        user.preferences.caresAboutCrime === true &&
-        listing.community.crimesCount < 30) {
-        console.log("you care about safety");
-        communityScore++;
-    } if (
-        user.preferences.caresAboutHospitals === true &&
-        listing.community.hospitalsCount > 2) {
-        console.log("you care about accessible healthcare");
-        communityScore++;
+    if (listing.community) {
+        if (
+            user.preferences.caresAboutSchools === true &&
+            listing.community.schoolsCount > 15) {
+            console.log("you like good schools");
+            communityScore++;
+        } if (
+            user.preferences.caresAboutGroceryStores === true &&
+            listing.community.groceryStoresCount > 1) {
+            console.log("you like close grocery stores");
+            communityScore++;
+        } if (
+            user.preferences.caresAboutParks === true &&
+            listing.community.parksCount > 2) {
+            console.log("you like parks nearby");
+            communityScore++;
+        } if (
+            user.preferences.caresAboutCrime === true &&
+            listing.community.crimesCount < 30) {
+            console.log("you care about safety");
+            communityScore++;
+        } if (
+            user.preferences.caresAboutHospitals === true &&
+            listing.community.hospitalsCount > 2) {
+            console.log("you care about accessible healthcare");
+            communityScore++;
+        }
     }
 
     return communityScore;

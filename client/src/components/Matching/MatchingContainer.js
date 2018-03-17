@@ -40,7 +40,7 @@ class MatchingContainer extends Component {
             this.randomize(this.state.listings);
         });
     }
-
+//random sort function
 randomize = (array, b, c, d) => { c = array.length; while (c) b = Math.random() * c-- | 0, d = array[c], array[c] = array[b], array[b] = d }
 
 refreshUser() {

@@ -1,4 +1,4 @@
-<h1>ADoor</h1>
+<h1>adoor</h1>
 
 <p> Real estate companies believe that in 2018 real estate will be online focused – more specialization with online postings is a must. Adoor incorporates these trends and lets the consumer focus on finding a house perfect for their needs. Adoor is different than the current real estate apps because it is more customizable. Current real estate apps use beds, baths, and price to show the user homes in a certain map area. Adoor will focus on the user’s exact needs, down to schools & distances to amenities, and show homes that fit those preferences. This means that Adoor lets the user just look at houses that already match your needs - all you need to focus on is if this house feels like home.For sellers this added adaptability means that they only contact people who are truly a match and interested in the home that they are selling. </p>
 
@@ -7,7 +7,7 @@
 <h3>Buying</h3>
 <p>A user interested in buying a house, would take a preference quiz - then be taken to a page to look at all of the houses in their area. The houses that match their preferences will come up as a match! To look at their matches they can click on the matching dashboard and reach out to the respective seller. See below for a demonstration</p>
 <br>
-[img]https://i.imgur.com/hqnxcXE.gif[/img]
+<a href="https://i.imgur.com/hqnxcXE.gif"><img src="https://i.imgur.com/hqnxcXE.gif" title="source: imgur.com" /></a>
 
 <br>
 
